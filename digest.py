@@ -19,6 +19,7 @@ import os
 import re
 import sys
 import urllib.parse
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -45,7 +46,15 @@ MAX_CANDIDATES = 500
 MAX_PER_SOURCE = 5  # newest N per source, so busy feeds can't crowd out quiet ones
 TOP_N = 5
 WORDS_PER_MINUTE = 238
-USER_AGENT = "Mozilla/5.0 (compatible; morning-digest/1.0; +https://github.com)"
+USER_AGENT = "Mozilla/5.0 (compatible; morning-digest/1.0; +https://github.com)"  # GitHub API only
+# Some sites (Substack especially) refuse obvious bots from cloud IPs, so feeds and
+# articles are fetched with the headers a desktop Chrome would send.
+BROWSER_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36",
+    "Accept": "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/html;q=0.8, */*;q=0.7",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 FEEDBACK_ISSUE_PREFIX = "Digest feedback"
 SEEN_RETENTION_DAYS = 30
 
@@ -69,9 +78,35 @@ def word_count(text: str) -> int:
 
 
 def http_get(url: str, timeout: int = 15, headers: dict | None = None) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read()
+    # Try browser-like headers first; some sites block those instead, so on a 403
+    # retry once as a plain, honest bot.
+    attempts = [BROWSER_HEADERS, {"User-Agent": USER_AGENT}]
+    for i, base in enumerate(attempts):
+        req = urllib.request.Request(url, headers={**base, **(headers or {})})
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read()
+        except urllib.error.HTTPError as exc:
+            if exc.code != 403 or i == len(attempts) - 1:
+                raise
+
+
+def check_feeds(feeds: list[dict]) -> int:
+    """Fetch every source once and report which ones work from this machine."""
+    def probe(feed):
+        try:
+            return feed, len(fetch_page_source(feed) if feed.get("type") == "page"
+                             else parse_feed(feed, http_get(feed["url"]))), ""
+        except Exception as exc:
+            return feed, 0, str(exc)[:80]
+
+    with ThreadPoolExecutor(max_workers=16) as pool:
+        results = list(pool.map(probe, feeds))
+    bad = [(f, err or "no dated entries") for f, n, err in results if not n]
+    for f, why in bad:
+        print(f"FAIL  {f['name']:<45} {why}")
+    print(f"\n{len(feeds) - len(bad)}/{len(feeds)} sources OK")
+    return 0
 
 
 def read_json(path: Path, default):
@@ -674,9 +709,12 @@ def main(argv=None) -> int:
     ap.add_argument("--no-llm", action="store_true", help="skip the LLM and use the chronological fallback")
     ap.add_argument("--dry-run", action="store_true", help="don't write state/ or touch GitHub issues")
     ap.add_argument("--out", default="public", help="output directory (default: public)")
+    ap.add_argument("--check-feeds", action="store_true", help="only report which sources can be fetched")
     args = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
+    if args.check_feeds:
+        return check_feeds(load_feeds())
     dry = args.dry_run or args.mock
     feeds = load_feeds()
     seen: dict = {} if args.mock else read_json(SEEN_PATH, {})

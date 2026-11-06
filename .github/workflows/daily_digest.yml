@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "30 10 * * *" # 5:30 AM EST / 6:30 AM EDT (GitHub may start it a bit late)
   workflow_dispatch:
+    inputs:
+      check_feeds:
+        description: "Only test which sources can be fetched (no digest, no deploy)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write # commit state/ (seen items, feedback log, learned taste, page cache)
@@ -29,13 +34,19 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Check sources only
+        if: ${{ inputs.check_feeds }}
+        run: python digest.py --check-feeds
+
       - name: Build digest
+        if: ${{ !inputs.check_feeds }}
         run: python digest.py
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit state
+        if: ${{ !inputs.check_feeds }}
         run: |
           git config user.name "digest-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -48,13 +59,16 @@ jobs:
           fi
 
       - uses: actions/configure-pages@v5
+        if: ${{ !inputs.check_feeds }}
 
       - uses: actions/upload-pages-artifact@v3
+        if: ${{ !inputs.check_feeds }}
         with:
           path: public
 
   deploy:
     needs: build
+    if: ${{ !inputs.check_feeds }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages
