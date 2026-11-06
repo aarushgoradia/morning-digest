@@ -1,0 +1,11 @@
+{
+ "https://rikiyat.github.io/blog/": {
+  "https://rikiyat.github.io/blog/weight-space-programming/": {
+   "author": "",
+   "published": "2026-11-02T00:00:00-08:00",
+   "summary": "We find that frontier LLMs are surprisingly good at natively reading and writing neural network weights, using a variety of recent tools and algorithms or even via direct weight editing.",
+   "title": "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights",
+   "words": 5440
+  }
+ }
+}
