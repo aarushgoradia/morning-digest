@@ -1,4 +1,7 @@
-# Sources the digest pulls from. All URLs were verified working on 2026-11-06.
+# Sources the digest pulls from. All URLs were verified working from GitHub Actions on 2026-11-06.
+# Substack newsletters on substack.com refuse requests from GitHub's servers (403), so
+# they're left out; run `python digest.py --check-feeds` (or the workflow with
+# check_feeds=true) to see which sources work.
 #
 #   name:      shown on the page
 #   url:       RSS/Atom feed, or (with type: page) a blog index page to watch
@@ -13,13 +16,9 @@ feeds:
   # ───────────────────────── Chips, hardware & computer architecture
   - {name: Chips and Cheese, url: "https://chipsandcheese.com/feed/", category: hardware}
   - {name: SemiAnalysis, url: "https://newsletter.semianalysis.com/feed", category: hardware}
-  - {name: The Chip Letter, url: "https://thechipletter.substack.com/feed", category: hardware}
   - {name: Fabricated Knowledge, url: "https://www.fabricatedknowledge.com/feed", category: hardware}
-  - {name: More Than Moore, url: "https://morethanmoore.substack.com/feed", category: hardware}
-  - {name: Irrational Analysis, url: "https://irrationalanalysis.substack.com/feed", category: hardware}
   - {name: Ken Shirriff, url: "https://www.righto.com/feeds/posts/default", category: hardware}
   - {name: bunnie's blog, url: "https://www.bunniestudios.com/blog/feed/", category: hardware}
-  - {name: lcamtuf, url: "https://lcamtuf.substack.com/feed", category: hardware}
   - {name: Fabien Sanglard, url: "https://fabiensanglard.net/rss.xml", category: hardware}
   - {name: IEEE Spectrum (Semiconductors), url: "https://spectrum.ieee.org/feeds/topic/semiconductors.rss", category: hardware}
   - {name: SIGARCH Computer Architecture Today, url: "https://www.sigarch.org/blog/feed/", category: hardware}
@@ -55,7 +54,6 @@ feeds:
   - {name: Horace He, url: "https://www.thonking.ai/feed", category: ai-ml}
   - {name: Tim Dettmers, url: "https://timdettmers.com/feed/", category: ai-ml}
   - {name: Sebastian Raschka, url: "https://magazine.sebastianraschka.com/feed", category: ai-ml}
-  - {name: Cameron Wolfe, url: "https://cameronrwolfe.substack.com/feed", category: ai-ml}
   - {name: Beren Millidge, url: "https://www.beren.io/feed.xml", category: ai-ml}
   - {name: Nicholas Carlini, url: "https://nicholas.carlini.com/writing/feed.xml", category: ai-ml}
   - {name: arg min (Ben Recht), url: "https://www.argmin.net/feed", category: ai-ml}
@@ -68,7 +66,6 @@ feeds:
   - {name: Dwarkesh Patel, url: "https://www.dwarkesh.com/feed", category: ai-ml}
   - {name: Understanding AI (Timothy B. Lee), url: "https://www.understandingai.org/feed", category: ai-ml}
   - {name: AI Snake Oil, url: "https://www.aisnakeoil.com/feed", category: ai-ml}
-  - {name: Import AI (Jack Clark), url: "https://importai.substack.com/feed", category: ai-ml}
   - {name: Simon Willison, url: "https://simonwillison.net/atom/everything/", category: ai-ml}
   - {name: Answer.AI, url: "https://www.answer.ai/index.xml", category: ai-ml}
   - {name: fast.ai, url: "https://www.fast.ai/index.xml", category: ai-ml}
@@ -106,7 +103,6 @@ feeds:
   # ───────────────────────── Science & progress essays
   - {name: Nautilus, url: "https://nautil.us/feed/", category: science-essays}
   - {name: Asterisk, url: "https://asteriskmag.com/feed", category: science-essays}
-  - {name: Works in Progress, url: "https://worksinprogress.substack.com/feed", category: science-essays}
   - {name: Asimov Press, url: "https://www.asimov.press/feed", category: science-essays}
   - {name: Knowable Magazine, url: "https://knowablemagazine.org/rss", category: science-essays}
   - {name: In the Pipeline (Derek Lowe), url: "https://www.science.org/blogs/pipeline/feed", category: science-essays}
@@ -145,7 +141,6 @@ feeds:
   - {name: The New Yorker (magazine), url: "https://www.newyorker.com/feed/magazine/rss", category: literary}
   - {name: The Marginalian, url: "https://www.themarginalian.org/feed/", category: literary}
   - {name: The Paris Review, url: "https://www.theparisreview.org/blog/feed/", category: literary}
-  - {name: Granta, url: "https://granta.com/feed/", category: literary}
   - {name: Literary Hub, url: "https://lithub.com/feed/", category: literary}
   - {name: Guernica, url: "https://www.guernicamag.com/feed/", category: literary}
   - {name: Electric Literature, url: "https://electricliterature.com/feed/", category: fiction}

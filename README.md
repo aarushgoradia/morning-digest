@@ -59,6 +59,6 @@ ANTHROPIC_API_KEY=sk-ant-... python digest.py --dry-run
 ## Tuning
 
 - **Change what you want:** edit `taste.md`. It's the top-priority input to the ranker.
-- **Add or remove sources:** edit `feeds.yaml` (145 sources, grouped by topic). Feeds tagged `wildcard` exist mainly to supply the wildcard slot. Each source contributes at most its 5 newest items per day, so busy feeds can't crowd out quiet blogs.
+- **Add or remove sources:** edit `feeds.yaml` (136 sources, grouped by topic). Feeds tagged `wildcard` exist mainly to supply the wildcard slot. Each source contributes at most its 5 newest items per day, so busy feeds can't crowd out quiet blogs.
 - **A blog with no RSS feed:** add it with `type: page` and a `link_pattern` regex matching its post URLs (see the Rikiya Takehi entry). The digest watches the index page for new links and reads each new post's title, date and description once.
 - **Window:** set the `LOOKBACK_HOURS` env var (default 48).
