@@ -1,0 +1,179 @@
+# Sources the digest pulls from. All URLs were verified working on 2026-11-06.
+#
+#   name:      shown on the page
+#   url:       RSS/Atom feed, or (with type: page) a blog index page to watch
+#   category:  a hint to the ranker, not a filter
+#   type:      optional. "page" = no usable feed, so watch the page for new post links
+#   link_pattern: (type: page only) regex that post URLs must match
+#
+# Some quiet-but-excellent blogs are kept even if they post rarely. They cost nothing
+# on days they're silent. "wildcard" sources mainly feed the wildcard slot.
+
+feeds:
+  # ───────────────────────── Chips, hardware & computer architecture
+  - {name: Chips and Cheese, url: "https://chipsandcheese.com/feed/", category: hardware}
+  - {name: SemiAnalysis, url: "https://newsletter.semianalysis.com/feed", category: hardware}
+  - {name: The Chip Letter, url: "https://thechipletter.substack.com/feed", category: hardware}
+  - {name: Fabricated Knowledge, url: "https://www.fabricatedknowledge.com/feed", category: hardware}
+  - {name: More Than Moore, url: "https://morethanmoore.substack.com/feed", category: hardware}
+  - {name: Irrational Analysis, url: "https://irrationalanalysis.substack.com/feed", category: hardware}
+  - {name: Ken Shirriff, url: "https://www.righto.com/feeds/posts/default", category: hardware}
+  - {name: bunnie's blog, url: "https://www.bunniestudios.com/blog/feed/", category: hardware}
+  - {name: lcamtuf, url: "https://lcamtuf.substack.com/feed", category: hardware}
+  - {name: Fabien Sanglard, url: "https://fabiensanglard.net/rss.xml", category: hardware}
+  - {name: IEEE Spectrum (Semiconductors), url: "https://spectrum.ieee.org/feeds/topic/semiconductors.rss", category: hardware}
+  - {name: SIGARCH Computer Architecture Today, url: "https://www.sigarch.org/blog/feed/", category: hardware}
+  - {name: The Next Platform, url: "https://www.nextplatform.com/feed/", category: hardware}
+  - {name: Semiconductor Engineering, url: "https://semiengineering.com/feed/", category: hardware}
+
+  # ───────────────────────── Systems & performance
+  - {name: Dan Luu, url: "https://danluu.com/atom.xml", category: systems}
+  - {name: Brendan Gregg, url: "https://www.brendangregg.com/blog/rss.xml", category: systems}
+  - {name: Fabian Giesen, url: "https://fgiesen.wordpress.com/feed/", category: systems}
+  - {name: Hillel Wayne, url: "https://www.hillelwayne.com/index.xml", category: systems}
+  - {name: Marc Brooker, url: "https://brooker.co.za/blog/rss.xml", category: systems}
+  - {name: Murat Demirbas, url: "https://muratbuffalo.blogspot.com/feeds/posts/default", category: systems}
+  - {name: Eli Bendersky, url: "https://eli.thegreenplace.net/feeds/all.atom.xml", category: systems}
+  - {name: Julia Evans, url: "https://jvns.ca/atom.xml", category: systems}
+  - {name: matklad, url: "https://matklad.github.io/feed.xml", category: systems}
+  - {name: Jamie Brandon, url: "https://www.scattered-thoughts.net/atom.xml", category: systems}
+  - {name: Bert Hubert, url: "https://berthub.eu/articles/index.xml", category: systems}
+
+  # ───────────────────────── AI / ML: research blogs & thoughtful takes
+  - name: Rikiya Takehi
+    url: "https://rikiyat.github.io/blog/"
+    type: page
+    link_pattern: "/blog/[^/]+/$"
+    category: ai-ml
+  - {name: Lil'Log (Lilian Weng), url: "https://lilianweng.github.io/index.xml", category: ai-ml}
+  - {name: Interconnects (Nathan Lambert), url: "https://www.interconnects.ai/feed", category: ai-ml}
+  - {name: Andrej Karpathy, url: "https://karpathy.bearblog.dev/feed/", category: ai-ml}
+  - {name: Andrej Karpathy (blog), url: "https://karpathy.github.io/feed.xml", category: ai-ml}
+  - {name: Thinking Machines, url: "https://thinkingmachines.ai/blog/index.xml", category: ai-ml}
+  - {name: Sander Dieleman, url: "https://sander.ai/feed.xml", category: ai-ml}
+  - {name: Tri Dao, url: "https://tridao.me/feed.xml", category: ai-ml}
+  - {name: Horace He, url: "https://www.thonking.ai/feed", category: ai-ml}
+  - {name: Tim Dettmers, url: "https://timdettmers.com/feed/", category: ai-ml}
+  - {name: Sebastian Raschka, url: "https://magazine.sebastianraschka.com/feed", category: ai-ml}
+  - {name: Cameron Wolfe, url: "https://cameronrwolfe.substack.com/feed", category: ai-ml}
+  - {name: Beren Millidge, url: "https://www.beren.io/feed.xml", category: ai-ml}
+  - {name: Nicholas Carlini, url: "https://nicholas.carlini.com/writing/feed.xml", category: ai-ml}
+  - {name: arg min (Ben Recht), url: "https://www.argmin.net/feed", category: ai-ml}
+  - {name: inFERENCe (Ferenc Huszár), url: "https://www.inference.vc/rss/", category: ai-ml}
+  - {name: Bounded Regret (Jacob Steinhardt), url: "https://bounded-regret.ghost.io/rss/", category: ai-ml}
+  - {name: BAIR Blog, url: "https://bair.berkeley.edu/blog/feed.xml", category: ai-ml}
+  - {name: The Gradient, url: "https://thegradient.pub/rss/", category: ai-ml}
+  - {name: Alignment Forum (curated), url: "https://www.alignmentforum.org/feed.xml?view=curated-rss", category: ai-ml}
+  - {name: LessWrong (curated), url: "https://www.lesswrong.com/feed.xml?view=curated-rss", category: ai-ml}
+  - {name: Dwarkesh Patel, url: "https://www.dwarkesh.com/feed", category: ai-ml}
+  - {name: Understanding AI (Timothy B. Lee), url: "https://www.understandingai.org/feed", category: ai-ml}
+  - {name: AI Snake Oil, url: "https://www.aisnakeoil.com/feed", category: ai-ml}
+  - {name: Import AI (Jack Clark), url: "https://importai.substack.com/feed", category: ai-ml}
+  - {name: Simon Willison, url: "https://simonwillison.net/atom/everything/", category: ai-ml}
+  - {name: Answer.AI, url: "https://www.answer.ai/index.xml", category: ai-ml}
+  - {name: fast.ai, url: "https://www.fast.ai/index.xml", category: ai-ml}
+  - {name: Hamel Husain, url: "https://hamel.dev/index.xml", category: ai-ml}
+  - {name: Eugene Yan, url: "https://eugeneyan.com/rss/", category: ai-ml}
+  - {name: Vicki Boykis, url: "https://vickiboykis.com/index.xml", category: ai-ml}
+  - {name: Max Woolf, url: "https://minimaxir.com/index.xml", category: ai-ml}
+
+  # ───────────────────────── Math, CS theory & physics (the "cool idea" level)
+  - {name: Quanta Magazine, url: "https://www.quantamagazine.org/feed/", category: math-physics}
+  - {name: Jeremy Kun, url: "https://www.jeremykun.com/index.xml", category: math-physics}
+  - {name: John D. Cook, url: "https://www.johndcook.com/blog/feed/", category: math-physics}
+  - {name: Shtetl-Optimized (Scott Aaronson), url: "https://scottaaronson.blog/?feed=rss2", category: math-physics}
+  - {name: Azimuth (John Baez), url: "https://johncarlosbaez.wordpress.com/feed/", category: math-physics}
+  - {name: Stephen Wolfram, url: "https://writings.stephenwolfram.com/feed/", category: math-physics}
+  - {name: Infinitely More (Joel David Hamkins), url: "https://www.infinitelymore.xyz/feed", category: math-physics}
+  - {name: Gil Kalai, url: "https://gilkalai.wordpress.com/feed/", category: math-physics}
+  - {name: Computational Complexity, url: "https://blog.computationalcomplexity.org/feeds/posts/default", category: math-physics}
+  - {name: Windows on Theory, url: "https://windowsontheory.org/feed/", category: math-physics}
+  - {name: AMS Feature Column, url: "https://blogs.ams.org/featurecolumn/feed/", category: math-physics}
+  - {name: Plus Magazine, url: "https://plus.maths.org/content/rss.xml", category: math-physics}
+  - {name: Chalkdust, url: "https://chalkdustmagazine.com/feed/", category: math-physics}
+  - {name: Math with Bad Drawings, url: "https://mathwithbaddrawings.com/feed/", category: math-physics}
+  - {name: Allen Downey, url: "https://www.allendowney.com/blog/feed/", category: math-physics}
+  - {name: Sean Carroll, url: "https://www.preposterousuniverse.com/feed/", category: math-physics}
+  - {name: Matt Strassler, url: "https://profmattstrassler.com/feed/", category: math-physics}
+  - {name: Not Even Wrong, url: "https://www.math.columbia.edu/~woit/wordpress/?feed=rss2", category: math-physics}
+  - {name: Backreaction (Sabine Hossenfelder), url: "https://backreaction.blogspot.com/feeds/posts/default", category: math-physics}
+  - {name: Galileo Unbound, url: "https://galileo-unbound.blog/feed/", category: math-physics}
+
+  # ───────────────────────── Interactive explainers
+  - {name: Bartosz Ciechanowski, url: "https://ciechanow.ski/atom.xml", category: explainers}
+  - {name: Red Blob Games, url: "https://www.redblobgames.com/blog/posts.xml", category: explainers}
+
+  # ───────────────────────── Science & progress essays
+  - {name: Nautilus, url: "https://nautil.us/feed/", category: science-essays}
+  - {name: Asterisk, url: "https://asteriskmag.com/feed", category: science-essays}
+  - {name: Works in Progress, url: "https://worksinprogress.substack.com/feed", category: science-essays}
+  - {name: Asimov Press, url: "https://www.asimov.press/feed", category: science-essays}
+  - {name: Knowable Magazine, url: "https://knowablemagazine.org/rss", category: science-essays}
+  - {name: In the Pipeline (Derek Lowe), url: "https://www.science.org/blogs/pipeline/feed", category: science-essays}
+  - {name: Our World in Data, url: "https://ourworldindata.org/atom.xml", category: science-essays}
+  - {name: Roots of Progress, url: "https://rootsofprogress.org/feed.xml", category: science-essays}
+
+  # ───────────────────────── Essays & ideas (strong voices)
+  - {name: Aeon, url: "https://aeon.co/feed.rss", category: essays}
+  - {name: Psyche, url: "https://psyche.co/feed", category: essays}
+  - {name: Noema, url: "https://www.noemamag.com/feed/", category: essays}
+  - {name: The American Scholar, url: "https://theamericanscholar.org/feed/", category: essays}
+  - {name: The Point, url: "https://thepointmag.com/feed/", category: essays}
+  - {name: Harper's, url: "https://harpers.org/feed/", category: essays}
+  - {name: London Review of Books, url: "https://www.lrb.co.uk/feeds/rss", category: essays}
+  - {name: The Baffler, url: "https://thebaffler.com/feed", category: essays}
+  - {name: The New Atlantis, url: "https://www.thenewatlantis.com/feed", category: essays}
+  - {name: Engelsberg Ideas, url: "https://engelsbergideas.com/feed/", category: essays}
+  - {name: The Atlantic (Ideas), url: "https://www.theatlantic.com/feed/channel/ideas/", category: essays}
+  - {name: Escaping Flatland (Henrik Karlsson), url: "https://www.henrikkarlsson.xyz/feed", category: essays}
+  - {name: Experimental History (Adam Mastroianni), url: "https://www.experimental-history.com/feed", category: essays}
+  - {name: Dynomight, url: "https://dynomight.net/feed.xml", category: essays}
+  - {name: Astral Codex Ten, url: "https://www.astralcodexten.com/feed", category: essays}
+  - {name: The Intrinsic Perspective (Erik Hoel), url: "https://www.theintrinsicperspective.com/feed", category: essays}
+  - {name: The Honest Broker (Ted Gioia), url: "https://www.honest-broker.com/feed", category: essays}
+  - {name: Contraptions (Venkatesh Rao), url: "https://contraptions.venkateshrao.com/feed", category: essays}
+  - {name: Slime Mold Time Mold, url: "https://slimemoldtimemold.com/feed/", category: essays}
+  - {name: Maggie Appleton, url: "https://maggieappleton.com/rss.xml", category: essays}
+  - {name: Robin Sloan, url: "https://www.robinsloan.com/feed.xml", category: essays}
+  - {name: Craig Mod, url: "https://craigmod.com/index.xml", category: essays}
+  - {name: Kevin Kelly, url: "https://kk.org/thetechnium/feed/", category: essays}
+  - {name: Cal Newport, url: "https://calnewport.com/feed/", category: essays}
+  - {name: Ben Kuhn, url: "https://www.benkuhn.net/rss/", category: essays}
+  - {name: Dan Wang, url: "https://danwang.co/feed/", category: essays}
+
+  # ───────────────────────── Literary writing & short fiction
+  - {name: The New Yorker (magazine), url: "https://www.newyorker.com/feed/magazine/rss", category: literary}
+  - {name: The Marginalian, url: "https://www.themarginalian.org/feed/", category: literary}
+  - {name: The Paris Review, url: "https://www.theparisreview.org/blog/feed/", category: literary}
+  - {name: Granta, url: "https://granta.com/feed/", category: literary}
+  - {name: Literary Hub, url: "https://lithub.com/feed/", category: literary}
+  - {name: Guernica, url: "https://www.guernicamag.com/feed/", category: literary}
+  - {name: Electric Literature, url: "https://electricliterature.com/feed/", category: fiction}
+  - {name: Craft Literary, url: "https://www.craftliterary.com/feed/", category: fiction}
+  - {name: Clarkesworld, url: "https://clarkesworldmagazine.com/feed/", category: fiction}
+  - {name: Reactor (short fiction), url: "https://reactormag.com/feed/", category: fiction}
+  - {name: Strange Horizons, url: "https://strangehorizons.com/feed/", category: fiction}
+
+  # ───────────────────────── Narrative history
+  - {name: The Public Domain Review, url: "https://publicdomainreview.org/rss.xml", category: history}
+  - {name: A Collection of Unmitigated Pedantry (Bret Devereaux), url: "https://acoup.blog/feed/", category: history}
+  - {name: The Digital Antiquarian, url: "https://www.filfre.net/feed/", category: history}
+  - {name: Abort Retry Fail, url: "https://www.abortretry.fail/feed", category: history}
+  - {name: Computer History Museum, url: "https://computerhistory.org/feed/", category: history}
+  - {name: Age of Invention (Anton Howes), url: "https://www.ageofinvention.xyz/feed", category: history}
+  - {name: Antigone, url: "https://antigonejournal.com/feed/", category: history}
+  - {name: JSTOR Daily, url: "https://daily.jstor.org/feed/", category: history}
+  - {name: Damn Interesting, url: "https://www.damninteresting.com/feed/", category: history}
+  - {name: Strange Company, url: "https://strangeco.blogspot.com/feeds/posts/default", category: history}
+
+  # ───────────────────────── Wildcard material (anything, any field)
+  - {name: Construction Physics, url: "https://www.construction-physics.com/feed", category: wildcard}
+  - {name: Casey Handmer, url: "https://caseyhandmer.wordpress.com/feed/", category: wildcard}
+  - {name: Low-tech Magazine, url: "https://solar.lowtechmagazine.com/posts/index.xml", category: wildcard}
+  - {name: Bits about Money (Patrick McKenzie), url: "https://www.bitsaboutmoney.com/archive/rss/", category: wildcard}
+  - {name: Longreads, url: "https://longreads.com/feed/", category: wildcard}
+  - {name: Atlas Obscura, url: "https://www.atlasobscura.com/feeds/latest", category: wildcard}
+  - {name: Futility Closet, url: "https://www.futilitycloset.com/feed/", category: wildcard}
+  - {name: 99% Invisible, url: "https://99percentinvisible.org/feed/", category: wildcard}
+  - {name: Kottke, url: "https://feeds.kottke.org/main", category: wildcard}
+  - {name: Hacker News (best), url: "https://hnrss.org/best", category: wildcard}

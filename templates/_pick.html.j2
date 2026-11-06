@@ -1,0 +1,30 @@
+<div class="body">
+  <div class="kicker">
+    <span class="cat">{{ p.category|catlabel }}</span><span class="dot"></span><span>{{ p.source }}</span>
+  </div>
+  <h2><a class="out" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }}</a></h2>
+  <p class="why">{{ p.why_it_matters }}</p>
+  <div class="byline">
+    <a class="go out" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.url|host }} ↗</a>
+    {% if p.author %}<span>{{ p.author }}</span>{% endif %}
+    {% if p.minutes %}<span>{{ p.minutes }} min read</span>{% endif %}
+    {% if p.score %}<span class="score" title="How strongly the editor recommends it">{{ p.score }}/10</span>{% endif %}
+  </div>
+  <div class="fb">
+    <button class="vote" type="button" data-vote="up" aria-pressed="false" aria-label="Liked it">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 10v11H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h3Zm0 0 4-7a2.5 2.5 0 0 1 2.5 2.5V9h5.2a2 2 0 0 1 2 2.3l-1.3 8A2 2 0 0 1 17.4 21H7"/></svg>
+    </button>
+    <button class="vote" type="button" data-vote="down" aria-pressed="false" aria-label="Didn't like it">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-3Zm0 0-4 7a2.5 2.5 0 0 1-2.5-2.5V15H5.3a2 2 0 0 1-2-2.3l1.3-8A2 2 0 0 1 6.6 3H17"/></svg>
+    </button>
+    <span class="fb-label" aria-live="polite"></span>
+  </div>
+  <div class="tags" data-for="up">
+    <div class="chips">{% for t in ["great depth", "new to me", "well written", "more like this"] %}<button class="chip" type="button" data-tag="{{ t }}" aria-pressed="false">{{ t }}</button>{% endfor %}</div>
+    <input class="note" type="text" placeholder="Anything else? (optional)" maxlength="300" aria-label="Optional note">
+  </div>
+  <div class="tags" data-for="down">
+    <div class="chips">{% for t in ["too verbose", "too shallow", "too technical", "hype/PR", "already knew this", "bad writing", "not my topic"] %}<button class="chip" type="button" data-tag="{{ t }}" aria-pressed="false">{{ t }}</button>{% endfor %}</div>
+    <input class="note" type="text" placeholder="Anything else? (optional)" maxlength="300" aria-label="Optional note">
+  </div>
+</div>

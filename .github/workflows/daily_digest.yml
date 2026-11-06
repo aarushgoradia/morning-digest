@@ -1,0 +1,64 @@
+name: Daily digest
+
+on:
+  schedule:
+    - cron: "30 10 * * *" # 5:30 AM EST / 6:30 AM EDT (GitHub may start it a bit late)
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit state/ (seen items, feedback log, learned taste, page cache)
+  issues: write # read and close "Digest feedback" issues
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-digest
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build digest
+        run: python digest.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit state
+        run: |
+          git config user.name "digest-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/
+          if git diff --cached --quiet; then
+            echo "No state changes."
+          else
+            git commit -m "Digest state for $(date -u +%F)"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
