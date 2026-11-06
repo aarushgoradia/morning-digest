@@ -282,10 +282,10 @@
   const REPO = {{ repo|tojson }};
   const PREFIX = {{ issue_prefix|tojson }};
   const PICKS = {{ picks_js|tojson }};
-  const KEY = "digest-feedback-" + DATE, READ_KEY = "digest-read-" + DATE;
+  const KEY = "digest-feedback-" + DATE;
   const load = k => { try { return JSON.parse(localStorage.getItem(k) || "{}"); } catch (e) { return {}; } };
   const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-  let state = load(KEY), read = load(READ_KEY);
+  let state = load(KEY);
 
   const bar = document.getElementById("sendbar");
   const msg = document.getElementById("send-msg");
@@ -309,7 +309,7 @@
     });
     const label = card.querySelector(".fb-label");
     label.textContent = s.vote === "up" ? "What worked?" : s.vote === "down" ? "What missed?" : "";
-    card.classList.toggle("read", !!read[card.dataset.idx]);
+    card.classList.toggle("read", !!s.vote);  // rated = read
   }
 
   function refreshBar() {
@@ -334,9 +334,6 @@
     card.querySelectorAll(".note").forEach(inp => inp.addEventListener("input", () => {
       const s = state[idx]; if (!s || !s.vote) return;
       s.note = inp.value; store(KEY, state);
-    }));
-    card.querySelectorAll("a.out").forEach(a => a.addEventListener("click", () => {
-      read[idx] = true; store(READ_KEY, read); paint(card);
     }));
     paint(card);
   });
