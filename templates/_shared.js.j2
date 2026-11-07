@@ -1,0 +1,62 @@
+  // ── Shared by the digest and library pages ──────────────────────────────
+  const DATE = {{ date_iso|tojson }};
+  const REPO = {{ repo|tojson }};
+  const PREFIX = {{ issue_prefix|tojson }};
+  const SERVER_LIB = {{ library_js|tojson }};   // {url: "later" | "saved"} as of the last build
+  const CAT_LABELS = {{ category_labels|tojson }};
+  const load = k => { try { return JSON.parse(localStorage.getItem(k) || "{}"); } catch (e) { return {}; } };
+  const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+  // Library changes made in this browser that the site hasn't picked up yet: {url: {list, item}}.
+  // list null = remove. Entries disappear once a build reflects them.
+  const LIB_KEY = "digest-library-pending";
+  let pending = load(LIB_KEY);
+  for (const [u, p] of Object.entries(pending)) if ((SERVER_LIB[u] || null) === (p.list || null)) delete pending[u];
+  store(LIB_KEY, pending);
+
+  const libList = url => (url in pending ? pending[url].list : (SERVER_LIB[url] || null));
+  function setLibList(item, list) {
+    if ((SERVER_LIB[item.url] || null) === list) delete pending[item.url];
+    else pending[item.url] = { list, item };
+    store(LIB_KEY, pending);
+  }
+  const toggleLib = (item, list) => setLibList(item, libList(item.url) === list ? null : list);
+
+  function mergedLibrary() {
+    const all = { ...SERVER_LIB };
+    for (const [u, p] of Object.entries(pending)) { if (p.list) all[u] = p.list; else delete all[u]; }
+    return all;
+  }
+  function paintShelfCounts() {
+    const c = { later: 0, saved: 0 };
+    Object.values(mergedLibrary()).forEach(l => c[l]++);
+    document.querySelectorAll("[data-count]").forEach(el => { el.textContent = c[el.dataset.count]; });
+  }
+
+  // ── Send bar: one GitHub issue carries ratings and library changes ──────
+  const bar = document.getElementById("sendbar");
+  const msg = document.getElementById("send-msg");
+  function refreshBar(nVotes) {
+    if (!bar) return;
+    const nLib = Object.keys(pending).length;
+    bar.classList.toggle("show", nVotes + nLib > 0);
+    const parts = [];
+    if (nVotes) parts.push(`${nVotes} rating${nVotes === 1 ? "" : "s"}`);
+    if (nLib) parts.push(`${nLib} library change${nLib === 1 ? "" : "s"}`);
+    msg.textContent = parts.join(" · ");
+  }
+  async function sendFeedback(votes) {
+    const library = Object.values(pending).map(p => ({ ...p.item, list: p.list }));
+    const payload = JSON.stringify({ date: DATE, votes, library }, null, 1);
+    if (!REPO) {
+      try { await navigator.clipboard.writeText(payload); msg.textContent = "Copied to clipboard"; }
+      catch (e) { console.log(payload); msg.textContent = "Logged to console"; }
+      return;
+    }
+    const body = "Feedback from the morning digest. Submit as-is: the next run reads it, logs it, and closes this issue.\n\n```json\n" + payload + "\n```\n";
+    const url = `https://github.com/${REPO}/issues/new?` + new URLSearchParams({
+      title: `${PREFIX} ${DATE}`, body, labels: "digest-feedback",
+    });
+    window.open(url, "_blank", "noopener");
+    msg.textContent = "Opened. Click “Create” on GitHub";
+  }

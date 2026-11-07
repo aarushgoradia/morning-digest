@@ -37,6 +37,8 @@ PAGES_PATH = STATE / "pages.json"
 FEEDBACK_PATH = STATE / "feedback.jsonl"
 LEARNED_PATH = STATE / "learned_taste.md"
 META_PATH = STATE / "meta.json"
+LIBRARY_PATH = STATE / "library.json"  # {url: {title, source, category, why_it_matters, list, added}}
+LIBRARY_LISTS = ("later", "saved")
 
 ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-haiku-5-5")
 LOOKBACK_HOURS = int(os.environ.get("LOOKBACK_HOURS", "48"))
@@ -333,20 +335,23 @@ def parse_feedback_issue(body: str) -> dict | None:
         data = json.loads(m.group(1))
     except json.JSONDecodeError:
         return None
-    return data if isinstance(data.get("votes"), list) else None
+    if not isinstance(data.get("votes", []), list) or not isinstance(data.get("library", []), list):
+        return None
+    return data if ("votes" in data or "library" in data) else None
 
 
-def ingest_feedback_issues() -> list[dict]:
-    """Pull 'Digest feedback' issues opened by the repo owner, log them, close them."""
+def ingest_feedback_issues() -> tuple[list[dict], list[dict]]:
+    """Pull 'Digest feedback' issues opened by the repo owner, close them.
+    Returns (votes, library operations), oldest issue first."""
     owner = os.environ.get("GITHUB_REPOSITORY_OWNER", "").lower()
     try:
         issues = github_api("GET", "/issues?state=open&per_page=50") or []
     except Exception as exc:
         log.warning("couldn't list feedback issues: %s", exc)
-        return []
+        return [], []
 
-    new = []
-    for issue in issues:
+    new, library_ops = [], []
+    for issue in sorted(issues, key=lambda i: i["number"]):
         if "pull_request" in issue or not issue.get("title", "").startswith(FEEDBACK_ISSUE_PREFIX):
             continue
         # Public repo: anyone can open an issue. Only trust the owner's.
@@ -357,7 +362,7 @@ def ingest_feedback_issues() -> list[dict]:
         if not data:
             log.warning("feedback issue #%s has no parseable JSON", issue["number"])
             continue
-        for v in data["votes"]:
+        for v in data.get("votes", []):
             if v.get("vote") not in ("up", "down") or not v.get("url"):
                 continue
             new.append({
@@ -371,14 +376,44 @@ def ingest_feedback_issues() -> list[dict]:
                 "note": str(v.get("note", ""))[:500],
                 "wildcard": bool(v.get("wildcard")),
             })
+        for item in data.get("library", []):
+            if isinstance(item, dict) and item.get("url"):
+                library_ops.append({**item, "date": data.get("date", "")})
         try:
+            n_votes, n_lib = len(data.get("votes", [])), len(data.get("library", []))
             github_api("POST", f"/issues/{issue['number']}/comments",
-                       {"body": f"Ingested {len(data['votes'])} vote(s) into `state/feedback.jsonl`."})
+                       {"body": f"Ingested {n_votes} vote(s) and {n_lib} library change(s)."})
             github_api("PATCH", f"/issues/{issue['number']}", {"state": "closed"})
         except Exception as exc:
             log.warning("couldn't close issue #%s: %s", issue["number"], exc)
-    log.info("ingested %d feedback votes", len(new))
-    return new
+    log.info("ingested %d feedback votes, %d library changes", len(new), len(library_ops))
+    return new, library_ops
+
+
+def apply_library_ops(library: dict, ops: list[dict]) -> dict:
+    """Add, move or remove reading-list items. list = "later" | "saved"; anything else removes."""
+    for op in ops:
+        url = str(op["url"])
+        if op.get("list") in LIBRARY_LISTS:
+            prev = library.get(url, {})
+            library[url] = {
+                "url": url,
+                "title": str(op.get("title") or prev.get("title") or url)[:300],
+                "source": str(op.get("source") or prev.get("source") or "")[:100],
+                "category": str(op.get("category") or prev.get("category") or "")[:40],
+                "why_it_matters": str(op.get("why_it_matters") or prev.get("why_it_matters") or "")[:400],
+                "list": op["list"],
+                "added": prev.get("added") or op.get("date") or now_utc().strftime("%Y-%m-%d"),
+            }
+        else:
+            library.pop(url, None)
+    return library
+
+
+def format_library_examples(library: dict, limit: int = 20) -> str:
+    items = sorted(library.values(), key=lambda i: i["added"])[-limit:]
+    label = {"saved": "SAVED to keep", "later": "SAVED to read later"}
+    return "\n".join(f'- {label[i["list"]]}: "{i["title"]}" ({i["source"]})' for i in items)
 
 
 def source_stats(feedback: list[dict]) -> dict[str, dict]:
@@ -451,12 +486,13 @@ OUTPUT_SCHEMA = {
 }
 
 
-def build_system_prompt(taste: str, learned: str, feedback: list[dict]) -> str:
+def build_system_prompt(taste: str, learned: str, feedback: list[dict], library: dict | None = None) -> str:
     learned_block = f"\n<learned_from_feedback>\n{learned.strip()}\n</learned_from_feedback>\n" if learned.strip() else ""
-    examples = format_feedback_examples(feedback)
+    examples = "\n".join(x for x in (format_feedback_examples(feedback), format_library_examples(library or {})) if x)
     examples_block = (
         "\n<recent_reactions>\nThe reader's recent reactions to past picks. Use the reasons, "
-        f"not just the votes.\n{examples}\n</recent_reactions>\n" if examples else ""
+        "not just the votes. Saving a piece is a strong signal of interest, even unread."
+        f"\n{examples}\n</recent_reactions>\n" if examples else ""
     )
     stats = {k: v for k, v in source_stats(feedback).items() if v["up"] + v["down"] >= 3}
     sources_block = ""
@@ -534,11 +570,11 @@ def validate_picks(raw: str, candidates: list[dict]) -> list[dict]:
 
 
 def rank(candidates: list[dict], taste: str, learned: str, feedback: list[dict],
-         use_llm: bool, llm=call_llm) -> tuple[list[dict], str]:
+         use_llm: bool, llm=call_llm, library: dict | None = None) -> tuple[list[dict], str]:
     """Returns (picks, label describing how they were chosen)."""
     if use_llm and candidates:
         try:
-            raw = llm(build_system_prompt(taste, learned, feedback),
+            raw = llm(build_system_prompt(taste, learned, feedback, library),
                       build_user_prompt(candidates), OUTPUT_SCHEMA)
             picks = validate_picks(raw, candidates)
             if picks:
@@ -624,17 +660,28 @@ CATEGORY_LABELS = {
 }
 
 
-def render(picks: list[dict], method: str, window_hours: int, n_candidates: int, out_dir: Path) -> Path:
+def render(picks: list[dict], method: str, window_hours: int, n_candidates: int, out_dir: Path,
+           library: dict | None = None) -> Path:
     env = Environment(loader=FileSystemLoader(ROOT / "templates"), autoescape=select_autoescape(["html", "j2"]))
     env.filters["host"] = lambda u: urllib.parse.urlparse(u).netloc.removeprefix("www.")
     env.filters["catlabel"] = lambda c: CATEGORY_LABELS.get(c or "", (c or "Reading").replace("-", " ").title())
     picks = sorted(picks, key=lambda p: p.get("wildcard", False))  # wildcard last; matches the page's indices
     today = now_utc().astimezone(ZoneInfo("America/New_York"))
     repo = os.environ.get("GITHUB_REPOSITORY") or os.environ.get("DIGEST_REPO", "")
-    page = env.get_template("index.html.j2").render(
-        picks=picks,
-        picks_js=[{k: p.get(k) for k in ("url", "title", "source", "wildcard")} for p in picks],
+    library_items = sorted((library or {}).values(), key=lambda i: i["added"], reverse=True)
+    common = dict(
         date_iso=today.strftime("%Y-%m-%d"),
+        repo=repo,
+        issue_prefix=FEEDBACK_ISSUE_PREFIX,
+        library_js={i["url"]: i["list"] for i in library_items},
+        library_items=library_items,
+        category_labels=CATEGORY_LABELS,
+    )
+    page = env.get_template("index.html.j2").render(
+        **common,
+        picks=picks,
+        picks_js=[{k: p.get(k) for k in ("url", "title", "source", "wildcard", "category", "why_it_matters")}
+                  for p in picks],
         date_human=today.strftime("%A, %B %-d, %Y"),
         date_short=today.strftime("%b %-d"),
         greeting="Good morning" if today.hour < 12 else "Good afternoon" if today.hour < 18 else "Good evening",
@@ -642,12 +689,11 @@ def render(picks: list[dict], method: str, window_hours: int, n_candidates: int,
         window_hours=window_hours,
         n_candidates=n_candidates,
         total_minutes=sum(p.get("minutes") or 0 for p in picks),
-        repo=repo,
-        issue_prefix=FEEDBACK_ISSUE_PREFIX,
     )
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / "index.html"
     out.write_text(page)
+    (out_dir / "library.html").write_text(env.get_template("library.html.j2").render(**common))
     (out_dir / ".nojekyll").write_text("")
     return out
 
@@ -729,8 +775,13 @@ def main(argv=None) -> int:
     PAGE_CACHE.update(read_json(PAGES_PATH, {}))
 
     feedback = read_feedback()
+    library: dict = read_json(LIBRARY_PATH, {})
     if not dry:
-        new_votes = ingest_feedback_issues()
+        new_votes, library_ops = ingest_feedback_issues()
+        if library_ops:
+            STATE.mkdir(exist_ok=True)
+            apply_library_ops(library, library_ops)
+            LIBRARY_PATH.write_text(json.dumps(library, indent=1, sort_keys=True) + "\n")
         if new_votes:
             STATE.mkdir(exist_ok=True)
             with FEEDBACK_PATH.open("a") as fh:
@@ -754,14 +805,14 @@ def main(argv=None) -> int:
         learned = ""
 
     candidates, window = gather_candidates(feeds, seen, fetcher=mock_fetcher if args.mock else fetch_feed)
-    picks, method = rank(candidates, taste, learned, feedback, use_llm, llm=llm)
+    picks, method = rank(candidates, taste, learned, feedback, use_llm, llm=llm, library=library)
     if args.mock:
         for p in picks:
             p["minutes"] = max(1, round((p.get("words") or 0) / WORDS_PER_MINUTE)) or None
     else:
         add_reading_times(picks)
 
-    out = render(picks, method, window, len(candidates), ROOT / args.out)
+    out = render(picks, method, window, len(candidates), ROOT / args.out, library=library)
     log.info("wrote %s (%d picks; %s)", out, len(picks), method)
 
     if not dry:

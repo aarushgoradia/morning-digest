@@ -13,6 +13,8 @@ The page has 👍/👎 buttons on each pick, with reason tags (too verbose, too 
 - shows the ranker each source's like/dislike record once it has 3+ votes,
 - about once a week, rewrites `state/learned_taste.md`, a short summary of what your votes show, also fed to the ranker.
 
+Each piece also has **Read later** and **Save** buttons. They work instantly in your browser and go out in the same feedback issue, so the next run stores them in `state/library.json` and they appear on any device. Both lists live on a separate **Library** page (`library.html`, linked from the top of the digest), where you can mark read-later items done, keep them, or remove saved ones. Saving a piece also tells the ranker you liked it.
+
 Only issues opened by the repo owner are read, so other people can't change your taste profile.
 
 ## Files
@@ -23,7 +25,7 @@ Only issues opened by the repo owner are read, so other people can't change your
 | `taste.md` | Your taste profile, written by you. Edit it any time. |
 | `digest.py` | Fetch → rank → render |
 | `templates/` | The page: Newsreader + Inter type, light and dark themes, follows your system setting |
-| `state/` | Committed by the workflow: `seen.json`, `feedback.jsonl`, `learned_taste.md`, `meta.json`, `pages.json` |
+| `state/` | Committed by the workflow: `seen.json`, `feedback.jsonl`, `library.json`, `learned_taste.md`, `meta.json`, `pages.json` |
 
 ## Setup
 

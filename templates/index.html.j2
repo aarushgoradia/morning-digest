@@ -1,221 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Morning Digest · {{ date_short }}</title>
-<meta name="color-scheme" content="light dark">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='18' r='8' fill='%23c8553d'/><path d='M4 26h24' stroke='%23c8553d' stroke-width='2.5' stroke-linecap='round'/></svg>">
-<style>
-  :root {
-    --paper: #f7f3ec;
-    --card: #fffdf9;
-    --ink: #1d1a16;
-    --ink-2: #4a443c;
-    --ink-3: #8a8174;
-    --rule: #e3dbcd;
-    --rule-strong: #1d1a16;
-    --accent: #c8553d;
-    --accent-soft: #f6e3dc;
-    --up: #2f7d55;
-    --up-soft: #e1f0e7;
-    --down: #b2453a;
-    --down-soft: #f7e2df;
-    --shadow: 0 1px 2px rgba(40, 30, 15, .04), 0 8px 24px -12px rgba(40, 30, 15, .12);
-    --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #15130f;
-      --card: #1c1a16;
-      --ink: #efe9df;
-      --ink-2: #c4bcae;
-      --ink-3: #8d8576;
-      --rule: #2e2a24;
-      --rule-strong: #efe9df;
-      --accent: #e9805f;
-      --accent-soft: #3a2620;
-      --up: #6fc596;
-      --up-soft: #1e3328;
-      --down: #ee8a7f;
-      --down-soft: #3a2220;
-      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px -14px rgba(0, 0, 0, .6);
-    }
-  }
-
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: 18px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-  a { color: inherit; }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
-
-  /* ── Masthead ─────────────────────────────── */
-  .masthead { padding: 56px 0 0; text-align: center; }
-  .eyebrow {
-    font-family: var(--sans); font-size: 12px; font-weight: 500;
-    letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
-  }
-  .masthead h1 {
-    font-weight: 500; font-size: clamp(44px, 9vw, 72px); line-height: 1;
-    letter-spacing: -.02em; margin: 14px 0 18px;
-  }
-  .masthead h1 em { font-style: italic; color: var(--accent); }
-  .dateline {
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    border-top: 2px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong);
-    padding: 9px 2px; margin-top: 8px;
-    font-family: var(--sans); font-size: 13px; color: var(--ink-2);
-  }
-  .dateline span:nth-child(2) { color: var(--ink-3); }
-  .intro {
-    font-style: italic; color: var(--ink-2); font-size: 19px;
-    text-align: center; margin: 28px auto 8px; max-width: 34em;
-  }
-
-  /* ── Picks ────────────────────────────────── */
-  .picks { list-style: none; margin: 28px 0 0; padding: 0; }
-  .pick {
-    position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 0 18px;
-    padding: 30px 0 28px; border-bottom: 1px solid var(--rule);
-  }
-  .pick:last-child { border-bottom: 0; }
-  .num {
-    font-size: 44px; line-height: .9; font-weight: 400; color: var(--ink-3);
-    font-variant-numeric: lining-nums; padding-top: 4px; transition: color .2s;
-  }
-  .pick:hover .num { color: var(--accent); }
-  .kicker {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
-    font-family: var(--sans); font-size: 12px; font-weight: 600;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
-  }
-  .kicker .cat { color: var(--accent); }
-  .kicker .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); opacity: .6; }
-  .pick h2 {
-    font-size: clamp(23px, 3.6vw, 28px); line-height: 1.2; font-weight: 500;
-    letter-spacing: -.012em; margin: 10px 0 10px;
-  }
-  .pick h2 a { text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent));
-    background-size: 0 1.5px; background-repeat: no-repeat; background-position: 0 100%;
-    transition: background-size .35s ease; }
-  .pick h2 a:hover, .pick h2 a:focus-visible { background-size: 100% 1.5px; outline: none; }
-  .why { margin: 0 0 14px; color: var(--ink-2); font-size: 18.5px; line-height: 1.5; }
-  .byline {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px;
-    font-family: var(--sans); font-size: 13px; color: var(--ink-3);
-  }
-  .byline .go {
-    color: var(--ink); text-decoration: none; font-weight: 500;
-    border-bottom: 1px solid var(--rule); padding-bottom: 1px;
-  }
-  .byline .go:hover { border-color: var(--accent); color: var(--accent); }
-  .score { margin-left: auto; font-variant-numeric: tabular-nums; }
-  .read .num::after { content: "✓"; display: block; font-family: var(--sans); font-size: 14px; color: var(--up); margin-top: 8px; }
-  .read h2, .read .why { opacity: .62; }
-
-  /* Wildcard */
-  .wild-head {
-    display: flex; align-items: center; gap: 14px; margin: 36px 0 0;
-    font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--accent);
-  }
-  .wild-head::before, .wild-head::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-  .pick.wild {
-    background: var(--card); border: 1px solid var(--rule); border-radius: 14px;
-    box-shadow: var(--shadow); padding: 28px 26px 26px 18px; margin-top: 18px;
-  }
-  .pick.wild .num { color: var(--accent); font-size: 36px; text-align: center; }
-  .wild-note { font-style: italic; font-size: 15px; color: var(--ink-3); margin: 0 0 14px; padding-bottom: 14px; border-bottom: 1px dashed var(--rule); }
-
-  /* ── Feedback ─────────────────────────────── */
-  .fb { display: flex; align-items: center; gap: 6px; margin-top: 16px; }
-  .vote {
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    height: 32px; min-width: 40px; padding: 0 12px; border-radius: 999px;
-    border: 1px solid var(--rule); background: transparent; color: var(--ink-3);
-    font: 500 13px var(--sans); cursor: pointer; transition: all .15s ease;
-  }
-  .vote svg { width: 15px; height: 15px; }
-  .vote:hover { color: var(--ink); border-color: var(--ink-3); }
-  .vote[data-vote="up"].on { background: var(--up-soft); border-color: var(--up); color: var(--up); }
-  .vote[data-vote="down"].on { background: var(--down-soft); border-color: var(--down); color: var(--down); }
-  .vote:focus-visible, .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .fb-label { font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); margin-left: 6px; }
-
-  .tags { display: none; margin-top: 12px; }
-  .tags.show { display: block; animation: rise .2s ease; }
-  @keyframes rise { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    height: 28px; padding: 0 11px; border-radius: 999px; cursor: pointer;
-    border: 1px dashed var(--rule); background: transparent; color: var(--ink-2);
-    font: 500 12.5px var(--sans); transition: all .15s ease;
-  }
-  .chip:hover { border-style: solid; border-color: var(--ink-3); }
-  .chip.on { border-style: solid; background: var(--ink); border-color: var(--ink); color: var(--paper); }
-  .note {
-    display: block; width: 100%; margin-top: 8px; padding: 8px 12px;
-    border: 1px solid var(--rule); border-radius: 10px; background: var(--card); color: var(--ink);
-    font: 14px var(--sans);
-  }
-  .note::placeholder { color: var(--ink-3); }
-  .note:focus { outline: none; border-color: var(--ink-3); }
-
-  /* Floating send bar */
-  .sendbar {
-    position: fixed; left: 50%; bottom: 20px; z-index: 10;
-    transform: translate(-50%, 140%); transition: transform .3s cubic-bezier(.2,.8,.2,1);
-    display: flex; align-items: center; gap: 14px;
-    max-width: calc(100% - 32px); padding: 8px 8px 8px 18px; border-radius: 999px;
-    background: var(--ink); color: var(--paper); box-shadow: 0 12px 30px -10px rgba(0,0,0,.4);
-    font: 14px var(--sans);
-  }
-  .sendbar.show { transform: translate(-50%, 0); }
-  .sendbar button {
-    border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer;
-    background: var(--accent); color: #fff; font: 600 13.5px var(--sans); white-space: nowrap;
-  }
-  .sendbar button:hover { filter: brightness(1.08); }
-  #send-msg { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  /* ── End ──────────────────────────────────── */
-  .end { text-align: center; padding: 48px 0 120px; }
-  .fleuron { font-size: 22px; color: var(--accent); letter-spacing: .5em; margin-left: .5em; }
-  .end p { margin: 14px 0 0; font-style: italic; color: var(--ink-2); }
-  .colophon {
-    margin-top: 28px; font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); line-height: 1.8;
-  }
-  .colophon a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule); }
-  .colophon a:hover { color: var(--accent); border-color: var(--accent); }
-
-  .empty { text-align: center; padding: 64px 0; font-style: italic; color: var(--ink-2); }
-
-  @media (max-width: 560px) {
-    body { font-size: 17px; }
-    .masthead { padding-top: 36px; }
-    .dateline { font-size: 12px; }
-    .dateline span:nth-child(2) { display: none; }
-    .pick { grid-template-columns: 1fr; }
-    .num { font-size: 30px; margin-bottom: 10px; }
-    .pick.wild { padding: 22px 18px; }
-    .pick.wild .num { text-align: left; }
-    .score { display: none; }
-  }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
-</style>
+{% include "_head.html.j2" %}
 </head>
 <body>
 <div class="wrap">
@@ -227,6 +14,10 @@
       <span>Five pieces, picked from {{ n_candidates }}</span>
       <span>{% if total_minutes %}~{{ total_minutes }} min read{% else %}{{ picks|length }} pieces{% endif %}</span>
     </div>
+    <nav class="shelf" aria-label="Your library">
+      <a href="library.html#later">Read later <b data-count="later">0</b></a>
+      <a href="library.html#saved">Saved <b data-count="saved">0</b></a>
+    </nav>
   </header>
 
 {% if not picks %}
@@ -262,33 +53,27 @@
     <p>That's everything for today. See you tomorrow.</p>
     <div class="colophon">
       {{ method }} · {{ n_candidates }} candidates from the last {{ window_hours }} hours<br>
-      {% if repo %}<a href="https://github.com/{{ repo }}/blob/main/taste.md">Taste profile</a> &nbsp;·&nbsp;
+      <a href="library.html">Your library</a>{% if repo %} &nbsp;·&nbsp;
+      <a href="https://github.com/{{ repo }}/blob/main/taste.md">Taste profile</a> &nbsp;·&nbsp;
       <a href="https://github.com/{{ repo }}/blob/main/state/learned_taste.md">What it's learned</a> &nbsp;·&nbsp;
       <a href="https://github.com/{{ repo }}/blob/main/feeds.yaml">Sources</a>{% endif %}
     </div>
   </footer>
 </div>
 
-{% if picks %}
 <div class="sendbar" id="sendbar" role="region" aria-label="Send feedback">
-  <span id="send-msg">Feedback on 0 pieces</span>
+  <span id="send-msg"></span>
   <button id="send" type="button">{% if repo %}Send to GitHub{% else %}Copy JSON{% endif %}</button>
 </div>
-{% endif %}
 
 <script>
 (() => {
-  const DATE = {{ date_iso|tojson }};
-  const REPO = {{ repo|tojson }};
-  const PREFIX = {{ issue_prefix|tojson }};
+{% include "_shared.js.j2" %}
+
   const PICKS = {{ picks_js|tojson }};
   const KEY = "digest-feedback-" + DATE;
-  const load = k => { try { return JSON.parse(localStorage.getItem(k) || "{}"); } catch (e) { return {}; } };
-  const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
   let state = load(KEY);
-
-  const bar = document.getElementById("sendbar");
-  const msg = document.getElementById("send-msg");
+  const nVotes = () => Object.values(state).filter(s => s.vote).length;
 
   function paint(card) {
     const s = state[card.dataset.idx] || {};
@@ -310,13 +95,14 @@
     const label = card.querySelector(".fb-label");
     label.textContent = s.vote === "up" ? "What worked?" : s.vote === "down" ? "What missed?" : "";
     card.classList.toggle("read", !!s.vote);  // rated = read
-  }
 
-  function refreshBar() {
-    if (!bar) return;
-    const n = Object.values(state).filter(s => s.vote).length;
-    bar.classList.toggle("show", n > 0);
-    msg.textContent = `Feedback on ${n} piece${n === 1 ? "" : "s"}`;
+    const list = libList(PICKS[card.dataset.idx].url);
+    card.querySelectorAll(".lib").forEach(b => {
+      const on = b.dataset.list === list;
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", on);
+      b.querySelector(".txt").textContent = on ? b.dataset.on : b.dataset.off;
+    });
   }
 
   document.querySelectorAll(".pick").forEach(card => {
@@ -324,7 +110,7 @@
     card.querySelectorAll(".vote").forEach(b => b.addEventListener("click", () => {
       const cur = state[idx] || {};
       state[idx] = cur.vote === b.dataset.vote ? {} : { vote: b.dataset.vote, tags: [], note: "" };
-      store(KEY, state); paint(card); refreshBar();
+      store(KEY, state); paint(card); refreshBar(nVotes());
     }));
     card.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
       const s = state[idx]; if (!s || !s.vote) return;
@@ -335,28 +121,22 @@
       const s = state[idx]; if (!s || !s.vote) return;
       s.note = inp.value; store(KEY, state);
     }));
+    card.querySelectorAll(".lib").forEach(b => b.addEventListener("click", () => {
+      const { wildcard, ...item } = PICKS[idx];
+      toggleLib(item, b.dataset.list);
+      paint(card); paintShelfCounts(); refreshBar(nVotes());
+    }));
     paint(card);
   });
-  refreshBar();
+  paintShelfCounts();
+  refreshBar(nVotes());
 
-  const send = document.getElementById("send");
-  if (send) send.addEventListener("click", async () => {
-    const votes = Object.entries(state).filter(([, s]) => s.vote).map(([i, s]) => ({
-      ...PICKS[i], vote: s.vote, tags: s.tags || [], note: (s.note || "").trim(),
-    }));
-    const payload = JSON.stringify({ date: DATE, votes }, null, 1);
-    if (!REPO) {
-      try { await navigator.clipboard.writeText(payload); msg.textContent = "Copied to clipboard"; }
-      catch (e) { console.log(payload); msg.textContent = "Logged to console"; }
-      return;
-    }
-    const body = "Feedback from the morning digest. Submit as-is: the next run reads it, logs it, and closes this issue.\n\n```json\n" + payload + "\n```\n";
-    const url = `https://github.com/${REPO}/issues/new?` + new URLSearchParams({
-      title: `${PREFIX} ${DATE}`, body, labels: "digest-feedback",
-    });
-    window.open(url, "_blank", "noopener");
-    msg.textContent = "Opened. Click “Create” on GitHub";
-  });
+  document.getElementById("send").addEventListener("click", () => sendFeedback(
+    Object.entries(state).filter(([, s]) => s.vote).map(([i, s]) => ({
+      url: PICKS[i].url, title: PICKS[i].title, source: PICKS[i].source, wildcard: PICKS[i].wildcard,
+      vote: s.vote, tags: s.tags || [], note: (s.note || "").trim(),
+    }))
+  ));
 })();
 </script>
 </body>

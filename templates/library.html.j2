@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Library · Morning Digest</title>
+{% include "_head.html.j2" %}
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">The Morning Digest</div>
+    <h1>Your <em>Library</em></h1>
+    <a class="back" href="./">← Back to today's digest</a>
+  </header>
+
+  <section id="later" aria-labelledby="later-h">
+    <div class="shelf-title"><h2 id="later-h">Read later</h2><span><b data-count="later">0</b> waiting</span></div>
+    <p class="shelf-sub">Pieces you meant to come back to. Mark one done when you've read it, or save it if it's a keeper.</p>
+    <div class="list" data-list="later"></div>
+  </section>
+
+  <section id="saved" aria-labelledby="saved-h">
+    <div class="shelf-title"><h2 id="saved-h">Saved</h2><span><b data-count="saved">0</b> kept</span></div>
+    <p class="shelf-sub">The ones worth keeping.</p>
+    <div class="list" data-list="saved"></div>
+  </section>
+
+  <footer class="end">
+    <div class="fleuron">❦</div>
+    <p>Changes you make here sync once you send them, like your ratings.</p>
+  </footer>
+</div>
+
+<div class="sendbar" id="sendbar" role="region" aria-label="Send library changes">
+  <span id="send-msg"></span>
+  <button id="send" type="button">{% if repo %}Send to GitHub{% else %}Copy JSON{% endif %}</button>
+</div>
+
+<script>
+(() => {
+{% include "_shared.js.j2" %}
+
+  const SERVER_ITEMS = {{ library_items|tojson }};  // newest first
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } };
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+  const ICONS = {
+    done: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+    save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1Z"/></svg>',
+    remove: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  };
+
+  function items() {
+    const byUrl = new Map(SERVER_ITEMS.map(i => [i.url, { ...i, pending: false }]));
+    for (const [u, p] of Object.entries(pending)) {
+      if (p.list && !byUrl.has(u)) byUrl.set(u, { ...p.item, added: DATE, pending: true });
+    }
+    return [...byUrl.values()]
+      .map(i => ({ ...i, list: libList(i.url), pending: i.pending || i.url in pending }))
+      .filter(i => i.list)
+      .sort((a, b) => (b.added || "").localeCompare(a.added || ""));
+  }
+
+  function button(icon, label, onClick) {
+    const b = el("button", "lib"); b.type = "button";
+    b.innerHTML = ICONS[icon]; b.append(el("span", "txt", label));
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function render() {
+    const all = items();
+    document.querySelectorAll(".list").forEach(list => {
+      list.replaceChildren();
+      const mine = all.filter(i => i.list === list.dataset.list);
+      if (!mine.length) {
+        list.append(el("p", "shelf-empty", list.dataset.list === "later"
+          ? "Nothing waiting. Tap “Read later” on any piece in the digest."
+          : "Nothing saved yet. Tap “Save” on a piece worth keeping."));
+        return;
+      }
+      for (const i of mine) {
+        const row = el("article", "item" + (i.pending ? " pending" : ""));
+        const kicker = el("div", "kicker");
+        kicker.append(el("span", "cat", CAT_LABELS[i.category] || "Reading"), el("span", "dot"), el("span", "", i.source || host(i.url)));
+        const h = el("h3"); const a = el("a", "", i.title); a.href = i.url; a.target = "_blank"; a.rel = "noopener"; h.append(a);
+        row.append(kicker, h);
+        if (i.why_it_matters) row.append(el("p", "why", i.why_it_matters));
+        const by = el("div", "byline");
+        const go = el("a", "go", host(i.url) + " ↗"); go.href = i.url; go.target = "_blank"; go.rel = "noopener";
+        by.append(go);
+        if (i.added) by.append(el("span", "", "Added " + new Date(i.added + "T12:00:00").toLocaleDateString(undefined, { month: "short", day: "numeric" })));
+        if (i.pending) by.append(el("span", "tag-pending", "Not sent yet"));
+        row.append(by);
+        const fb = el("div", "fb");
+        if (i.list === "later") {
+          fb.append(button("done", "Done", () => change(i, null)), button("save", "Keep it", () => change(i, "saved")));
+        } else {
+          fb.append(button("remove", "Remove", () => change(i, null)));
+        }
+        row.append(fb);
+        list.append(row);
+      }
+    });
+    paintShelfCounts();
+    refreshBar(0);
+  }
+
+  function change(i, list) {
+    const { pending: _p, list: _l, ...item } = i;
+    setLibList(item, list);
+    render();
+  }
+
+  render();
+  document.getElementById("send").addEventListener("click", () => sendFeedback([]));
+})();
+</script>
+</body>
+</html>

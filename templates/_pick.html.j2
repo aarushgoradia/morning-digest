@@ -18,6 +18,15 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 14V3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-3Zm0 0-4 7a2.5 2.5 0 0 1-2.5-2.5V15H5.3a2 2 0 0 1-2-2.3l1.3-8A2 2 0 0 1 6.6 3H17"/></svg>
     </button>
     <span class="fb-label" aria-live="polite"></span>
+    <span class="spacer"></span>
+    <button class="lib" type="button" data-list="later" data-off="Read later" data-on="On your list" aria-pressed="false" title="Add to your reading list">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" fill="none"/></svg>
+      <span class="txt">Read later</span>
+    </button>
+    <button class="lib" type="button" data-list="saved" data-off="Save" data-on="Saved" aria-pressed="false" title="Keep it in your library">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1Z"/></svg>
+      <span class="txt">Save</span>
+    </button>
   </div>
   <div class="tags" data-for="up">
     <div class="chips">{% for t in ["great depth", "new to me", "well written", "more like this"] %}<button class="chip" type="button" data-tag="{{ t }}" aria-pressed="false">{{ t }}</button>{% endfor %}</div>
