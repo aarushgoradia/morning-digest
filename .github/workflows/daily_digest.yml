@@ -1,8 +1,12 @@
 name: Daily digest
 
 on:
+  # GitHub's scheduler is best-effort and sometimes drops runs, so there are two backups.
+  # The gate job below makes whichever one fires first do the work; the rest exit early.
   schedule:
-    - cron: "30 10 * * *" # 5:30 AM EST / 6:30 AM EDT (GitHub may start it a bit late)
+    - cron: "30 10 * * *" # 5:30 AM EST / 6:30 AM EDT
+    - cron: "15 11 * * *" # backup
+    - cron: "0 12 * * *" # backup
   workflow_dispatch:
     inputs:
       check_feeds:
@@ -21,7 +25,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: state
+      - id: check
+        run: |
+          today=$(TZ=America/New_York date +%F)
+          last=$(jq -r '.last_built // ""' state/meta.json 2>/dev/null || true)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$last" = "$today" ]; then
+            echo "Today's digest ($today) is already built; skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

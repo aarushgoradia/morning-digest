@@ -766,6 +766,7 @@ def main(argv=None) -> int:
         seen = {u: d for u, d in seen.items() if d >= cutoff}
         SEEN_PATH.write_text(json.dumps(seen, indent=1, sort_keys=True) + "\n")
         PAGES_PATH.write_text(json.dumps(PAGE_CACHE, indent=1, sort_keys=True) + "\n")
+        meta["last_built"] = now_utc().astimezone(ZoneInfo("America/New_York")).strftime("%Y-%m-%d")
         META_PATH.write_text(json.dumps(meta, indent=1, sort_keys=True) + "\n")
     return 0
 
