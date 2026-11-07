@@ -127,7 +127,13 @@ def read_feedback() -> list[dict]:
                 out.append(json.loads(line))
             except json.JSONDecodeError:
                 log.warning("skipping bad feedback line: %s", line[:80])
-    return out
+    return latest_vote_per_article(out)
+
+
+def latest_vote_per_article(feedback: list[dict]) -> list[dict]:
+    """If an article was rated more than once (e.g. feedback sent twice), keep only the latest."""
+    latest = {f["url"]: f for f in feedback}
+    return [f for f in feedback if latest[f["url"]] is f]
 
 
 # --------------------------------------------------------------------------- feeds
@@ -730,7 +736,7 @@ def main(argv=None) -> int:
             with FEEDBACK_PATH.open("a") as fh:
                 for v in new_votes:
                     fh.write(json.dumps(v) + "\n")
-            feedback += new_votes
+            feedback = latest_vote_per_article(feedback + new_votes)
 
     if args.no_llm:
         use_llm, llm = False, call_llm
