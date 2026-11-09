@@ -1,6 +1,6 @@
 # Morning Digest
 
-Every morning at 10:30 UTC (5:30 AM EST, 6:30 AM EDT), GitHub Actions:
+Every night, GitHub Actions builds the next morning's digest. It's scheduled several times after midnight Eastern, because GitHub often starts scheduled runs hours late; the first run of the day does the work and the rest exit early. Each run:
 
 1. collects new items from the feeds in `feeds.yaml` (last 48 hours, widening to 7 days on slow days; anything already shown is skipped),
 2. has Claude (`claude-haiku-5-5`) pick the 5 best against `taste.md` (4 picks plus 1 wildcard from outside your usual interests), each with a one-line reason to read it,

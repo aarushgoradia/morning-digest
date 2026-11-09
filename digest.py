@@ -684,7 +684,7 @@ def render(picks: list[dict], method: str, window_hours: int, n_candidates: int,
                   for p in picks],
         date_human=today.strftime("%A, %B %-d, %Y"),
         date_short=today.strftime("%b %-d"),
-        greeting="Good morning" if today.hour < 12 else "Good afternoon" if today.hour < 18 else "Good evening",
+        greeting="Good morning",  # it's a morning paper, whenever GitHub gets around to printing it
         method=method,
         window_hours=window_hours,
         n_candidates=n_candidates,
