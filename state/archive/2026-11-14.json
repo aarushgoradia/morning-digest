@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-14",
+ "method": "Ranked by claude-sonnet-5-5, which read 13 of 14 shortlisted pieces",
+ "n_candidates": 98,
+ "picks": [
+  {
+   "url": "https://thinkingmachines.ai/blog/end-to-end-4-bit-training/",
+   "title": "End‑to‑End 4‑Bit Training",
+   "source": "Thinking Machines",
+   "category": "ai-ml",
+   "author": "Thinking Machines Lab",
+   "why_it_matters": "Explains how NVFP4 block scaling works and why 4-bit forward passes with MXFP8 backward passes (re-quantization, stochastic rounding) cut quantization bias and give real wall-clock speedups.",
+   "wildcard": false,
+   "score": 9,
+   "minutes": 18
+  },
+  {
+   "url": "https://www.dwarkesh.com/p/rsi",
+   "title": "The avalanche that hit math is coming for AI development",
+   "source": "Dwarkesh Patel",
+   "category": "ai-ml",
+   "author": "Dwarkesh Patel",
+   "why_it_matters": "Argues AI research is verifiable enough to automate like math, using the transformer as a case study; a long, opinionated take to test against.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 37
+  },
+  {
+   "url": "https://www.theguardian.com/science/2026/nov/13/kurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths",
+   "title": "AI unlocks Gödel's notebooks, said to contain hundreds of proved theorems",
+   "source": "Hacker News (best)",
+   "category": "wildcard",
+   "author": "bookofjoe",
+   "why_it_matters": "Claude helped decode Gödel's shorthand notebooks and reconstruct a near-proof of the axiom of choice's independence, checked in Coq; shows what AI can and can't verify.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 6
+  },
+  {
+   "url": "https://engelsbergideas.com/essays/nassers-long-road-to-suez/",
+   "title": "Nasser’s long road to Suez",
+   "source": "Engelsberg Ideas",
+   "category": "essays",
+   "author": "Jack Dickens",
+   "why_it_matters": "Treats Suez as an Egyptian decision rooted in 1882 to 1942 humiliations, not just great-power maneuvering; the 'Lesseps' radio code detail is a good hook.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 14
+  },
+  {
+   "url": "https://aeon.co/essays/those-forced-to-cross-borders-are-imagining-a-radical-new-world",
+   "title": "Fugitive imagination",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "Shahram Khosravi",
+   "why_it_matters": "An anthropologist and former border-crosser argues that smugglers and fugitives practice a form of imagination states treat as a threat; the smuggler-as-architect idea is the core.",
+   "wildcard": true,
+   "score": 6,
+   "minutes": 16
+  }
+ ]
+}

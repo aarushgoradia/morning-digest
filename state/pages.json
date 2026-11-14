@@ -7,5 +7,63 @@
    "title": "Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights",
    "words": 5440
   }
+ },
+ "https://thinkingmachines.ai/blog/": {
+  "https://thinkingmachines.ai/blog/a-safe-path-to-open-weights/": {
+   "author": "Thinking Machines Lab",
+   "published": "2026-07-31T00:00:00+00:00",
+   "summary": "Strategic openness can strengthen AI safety and support broader access as defenses and safety science mature.",
+   "title": "A Safe Path to Open Weights",
+   "words": 2306
+  },
+  "https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/": {
+   "author": "Thinking Machines Lab",
+   "published": "2025-09-10T07:01:00+00:00",
+   "summary": "Reproducibility is a bedrock of scientific progress. However, it\u2019s remarkably difficult to get reproducible results out of large language models.\nFor example, you might observe that asking ChatGPT the same question multiple times provides different results. This by itself is not surprising, since getting a result from a language model involves \u201csampling\u201d, a process that converts the language model\u2019s output into a probability distribution and probabilistically selects a token.\nWhat might be more surprising is that even when we adjust the temperature down to 0This means that the LLM always chooses the highest probability token, which is called greedy sampling. (thus making the sampling theoretically deterministic), LLM APIs are still not deterministic in practice (see past discussions here, here, or here). Even when running inference on your own hardware with an OSS inference library like vLLM or SGLang, sampling still isn\u2019t deterministic (see here or here).",
+   "title": "Defeating Nondeterminism in LLM Inference",
+   "words": 6072
+  },
+  "https://thinkingmachines.ai/blog/end-to-end-4-bit-training/": {
+   "author": "Thinking Machines Lab",
+   "published": "2026-11-13T00:00:00+00:00",
+   "summary": "Training large language models involves calculating and storing a lot of numbers. Using fewer bits for each value reduces memory usage and allows GPUs to perform calculations faster. However, there is a tradeoff: fewer bits also mean fewer representable numbers, leading to more aggressive rounding. Lower-precision representations ultimately hurt accuracy by adding error to the calculations.\nFor example, suppose we want to store the number 3.2, but the nearest values our numerical format can represent are 3 and 4. Rounding to 3 introduces a quantization error of \u22120.2-0.2\u22120.2, the difference between the actual value and the one that can be represented in the quantized format. A single error like this may seem small, but these errors accumulate over training as rounding happens repeatedly across layers and optimization steps, which can impair the learning process.",
+   "title": "End\u2011to\u2011End 4\u2011Bit Training",
+   "words": 4365
+  },
+  "https://thinkingmachines.ai/blog/interaction-models/": {
+   "author": "Thinking Machines Lab",
+   "published": "2026-05-11T00:00:00+00:00",
+   "summary": "Interaction models move beyond turn-based AI interfaces by handling multimodal, real-time collaboration natively across audio, video, and text.",
+   "title": "Interaction Models: A Scalable Approach to Human-AI Collaboration",
+   "words": 3939
+  },
+  "https://thinkingmachines.ai/blog/lora/": {
+   "author": "Thinking Machines Lab",
+   "published": "2025-09-29T00:00:00+00:00",
+   "summary": "How LoRA matches full training performance more broadly than expected.",
+   "title": "LoRA Without Regret",
+   "words": 7033
+  },
+  "https://thinkingmachines.ai/blog/modular-manifolds/": {
+   "author": "Thinking Machines Lab",
+   "published": "2025-09-26T00:00:00+00:00",
+   "summary": "A geometric framework for co-designing neural net optimizers with manifold constraints.",
+   "title": "Modular Manifolds",
+   "words": 6363
+  },
+  "https://thinkingmachines.ai/blog/on-policy-distillation/": {
+   "author": "Thinking Machines Lab",
+   "published": "2025-10-27T00:00:00+00:00",
+   "summary": "On-policy, dense supervision is a useful tool for distillation",
+   "title": "On-Policy Distillation",
+   "words": 6197
+  },
+  "https://thinkingmachines.ai/blog/the-future-worth-building-is-human/": {
+   "author": "Thinking Machines Lab",
+   "published": "2026-07-10T00:00:00+00:00",
+   "summary": "AI built for autonomy crowds people out, making us passive observers of what\u2019s coming. We\u2019re building toward a different future.",
+   "title": "The Future Worth Building Is Human",
+   "words": 2077
+  }
  }
 }
