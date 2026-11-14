@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-06",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://contraptions.venkateshrao.com/p/descent-into-the-computational-sublime",
+   "title": "Descent into the Computational Sublime",
+   "source": "Contraptions (Venkatesh Rao)",
+   "category": "essays",
+   "author": "Venkatesh Rao",
+   "why_it_matters": "From Dark Forest to Strange Forest Through the Hardness Wars",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.allendowney.com/blog/2026/11/06/do-people-get-more-conservative-with-age/",
+   "title": "Do People Get More Conservative With Age? - Probably Overthinking It",
+   "source": "Allen Downey",
+   "category": "math-physics",
+   "author": "Allen B. Downey",
+   "why_it_matters": "There’s a famous (but unattributable) quip that goes something like this: If you are not a liberal at 25, you have no heart. If you are not a conservative at 35, you have no brain. In Chapter 12 of Probably Overthinki…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.dwarkesh.com/p/clocktower",
+   "title": "The benchmark where AIs have to lie to win",
+   "source": "Dwarkesh Patel",
+   "category": "ai-ml",
+   "author": "Dwarkesh Patel",
+   "why_it_matters": "AIs are now good enough to run a conspiracy",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.understandingai.org/p/this-robotics-concept-helps-explain",
+   "title": "This robotics concept helps explain the jaggedness of frontier capabilities",
+   "source": "Understanding AI (Timothy B. Lee)",
+   "category": "ai-ml",
+   "author": "Timothy B. Lee",
+   "why_it_matters": "Sim-to-real gaps are everywhere.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.futilitycloset.com/2026/11/06/round-and-round-6/",
+   "title": "Round and Round",
+   "source": "Futility Closet",
+   "category": "wildcard",
+   "author": "Greg Ross",
+   "why_it_matters": "With a pair of compasses, draw a circle on a plane. Then, without changing the width of the compasses, draw a circle on a sphere. Surprisingly, the areas of the planar disk and the spherical cap are equal.",
+   "wildcard": true,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

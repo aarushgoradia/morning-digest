@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-09",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://aeon.co/essays/historical-ideas-of-equality-help-us-imagine-an-equal-world",
+   "title": "Historical ideas of equality help us imagine an equal world | Aeon Essays",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "",
+   "why_it_matters": "In the summer of 1646, the idea of equality gained new and profound depths. We are still catching up with the consequences",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://newsletter.semianalysis.com/p/we-visited-chinas-stargate-in-inner",
+   "title": "We Visited China’s Stargate in Inner Mongolia",
+   "source": "SemiAnalysis",
+   "category": "hardware",
+   "author": "Everlyn Tan",
+   "why_it_matters": "A wind-powered 800MW campus, 120MW built within a year, a 5MW SST-native 800V DC pilot and a cooling design without central chillers",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://scottaaronson.blog/?p=10295",
+   "title": "Aaronson-Ambainis Conjecture proved!  (By AI, of course)",
+   "source": "Shtetl-Optimized (Scott Aaronson)",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "The “For Dummies” Version (apologies for not including this earlier): Yes, an AI solved a big open problem about quantum computing No, this doesn’t kill quantum supremacy, or chan…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.lesswrong.com/posts/9PiLfo6iQbbDWFHv7/some-memories-of-early-anthropic",
+   "title": "Some Memories of Early Anthropic — LessWrong",
+   "source": "LessWrong (curated)",
+   "category": "ai-ml",
+   "author": "",
+   "why_it_matters": "The following events took place between October 2022 and May 2023. I wrote very little of this down at the time so am recalling from memory, and am r…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.newyorker.com/magazine/2026/11/16/can-american-socialism-survive-its-success",
+   "title": "The Unfinished Business of American Socialism",
+   "source": "The New Yorker (magazine)",
+   "category": "literary",
+   "author": "Jill Lepore",
+   "why_it_matters": "For generations, Democrats have borrowed socialism’s most workable ideas. Now Silicon Valley has taken up its dream of a world beyond wage labor.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

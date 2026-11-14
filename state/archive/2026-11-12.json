@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-12",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://chipsandcheese.com/p/talking-zen-6-with-mike-clark-at",
+   "title": "Talking Zen 6 with Mike Clark at AMD In-Depth",
+   "source": "Chips and Cheese",
+   "category": "hardware",
+   "author": "George Cozma",
+   "why_it_matters": "Hello you fine Internet folks,",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://lithub.com/the-russian-defector-who-plundered-the-amazon-for-american-drug-companies/",
+   "title": "The Russian Defector Who Plundered the Amazon For American Drug Companies",
+   "source": "Literary Hub",
+   "category": "literary",
+   "author": "",
+   "why_it_matters": "Boris Krukoff was whisper thin, with enormous eyes that erupted out of deep sockets. By the time he started working for the American pharmaceutical company Merck, he was fast becoming one of the pr…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://semiengineering.com/rethinking-memory-for-ai-inference/",
+   "title": "Rethinking Memory For AI Inference",
+   "source": "Semiconductor Engineering",
+   "category": "hardware",
+   "author": "Liz Allan",
+   "why_it_matters": "Processing data closer to memory could reduce power and boost performance, but software, thermal, and architectural challenges remain.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.astralcodexten.com/p/escaping-the-outside-criticism-trap",
+   "title": "Escaping The \"Outside Criticism\" Trap",
+   "source": "Astral Codex Ten",
+   "category": "essays",
+   "author": "Scott Alexander",
+   "why_it_matters": "...",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.construction-physics.com/p/technology-as-a-search-problem",
+   "title": "Technology as a Search Problem",
+   "source": "Construction Physics",
+   "category": "wildcard",
+   "author": "Brian Potter",
+   "why_it_matters": "One of my ongoing research interests is understanding the nature of technological progress: How does new technology come into the world and improve over time?",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

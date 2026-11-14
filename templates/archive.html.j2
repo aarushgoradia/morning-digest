@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Archive · Morning Digest</title>
+{% include "_head.html.j2" %}
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div class="eyebrow">The Morning Digest</div>
+    <h1>The <em>Archive</em></h1>
+    <a class="back" href="./">← Back to today's digest</a>
+  </header>
+
+{% if not days %}
+  <p class="empty">No past digests yet. Each morning's picks will be kept here.</p>
+{% endif %}
+{% for day in days %}
+  <section class="day" id="d{{ day.date }}">
+    <div class="shelf-title"><h2>{{ day.date|humandate }}</h2><span>{{ day.picks|length }} pieces</span></div>
+    {% for p in day.picks %}
+    <article class="item">
+      <div class="kicker">
+        <span class="cat">{% if p.wildcard %}Wildcard{% else %}{{ p.category|catlabel }}{% endif %}</span><span class="dot"></span><span>{{ p.source }}</span>
+      </div>
+      <h3><a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.title }}</a></h3>
+      {% if p.why_it_matters %}<p class="why">{{ p.why_it_matters }}</p>{% endif %}
+      <div class="byline">
+        <a class="go" href="{{ p.url }}" target="_blank" rel="noopener">{{ p.url|host }} ↗</a>
+        {% if p.author %}<span>{{ p.author }}</span>{% endif %}
+        {% if p.minutes %}<span>{{ p.minutes }} min read</span>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+{% endfor %}
+
+  <footer class="end">
+    <div class="fleuron">❦</div>
+    <p>{% if days %}{{ days|length }} morning{{ "" if days|length == 1 else "s" }} so far.{% else %}Check back tomorrow.{% endif %}</p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-11",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://chipsandcheese.com/p/amds-zen-6-family-feeding-the-beast",
+   "title": "AMD’s Zen 6 Family: Feeding the Beast",
+   "source": "Chips and Cheese",
+   "category": "hardware",
+   "author": "George Cozma",
+   "why_it_matters": "Hello you fine Internet folks,",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://longreads.com/2026/11/10/wine-fraud-1843/",
+   "title": "Pinot Noir: Inside the Criminal Gangs Making Fake Wine - Longreads",
+   "source": "Longreads",
+   "category": "wildcard",
+   "author": "Peter Rubin",
+   "why_it_matters": "\"Fraudsters have long counterfeited high-end wine. Now they are coming for the bottles on your supermarket shelves.\"",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://scottaaronson.blog/?p=10318",
+   "title": "Dana’s talk on OpenAI’s proof of the Unique Games Conjecture, now on YouTube!",
+   "source": "Shtetl-Optimized (Scott Aaronson)",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "Enjoy all three hours of this! Dana covers what the Unique Games problem is and why people cared about it, the structure of a proof of its NP-hardness, exactly where the previous attempts to comple…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.argmin.net/p/no-one-buys-corn-in-the-corn-market",
+   "title": "No One Buys Corn in the Corn Market",
+   "source": "arg min (Ben Recht)",
+   "category": "ai-ml",
+   "author": "Ben Recht",
+   "why_it_matters": "Prediction markets are for gambling. But what part of finance isn’t gambling?",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.noemamag.com/when-ais-become-unruly-swarms",
+   "title": "When AIs Become Unruly Swarms | NOEMA",
+   "source": "Noema",
+   "category": "essays",
+   "author": "",
+   "why_it_matters": "Building well-behaved AI one model at a time isn’t enough. As AI agents begin collaborating, safety will depend on the very world they share.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-08",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "http://www.righto.com/2026/11/signetics-st680a-dtl-nand.html",
+   "title": "Reverse engineering a vintage diode-transistor logic chip",
+   "source": "Ken Shirriff",
+   "category": "hardware",
+   "author": "",
+   "why_it_matters": "Going through a collection of old parts, CuriousMarc encountered some ICs that he couldn't identify. He opened up one of these ICs, and I st...",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://windowsontheory.org/2026/11/08/cs-2881-fall-26-lecture-4-recursive-self-improvement-and-ai-trajectories/",
+   "title": "CS 2881 Fall 26: Lecture 4: Recursive Self-Improvement and AI Trajectories",
+   "source": "Windows on Theory",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "September 24, 2026 · Dwarkesh Patel and Daniel Kokotajlo · Scribe notes by Adam, Noa, Radha, Rosa, Niranjan, and Wency Notes from CS 2881R: AI Alignment and Safety, Harvard, Fall 2026. Author Intro…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://windowsontheory.org/2026/11/08/cs-2881-fall-26-lecture-6-grading-reward-hacking-and-alignment/",
+   "title": "CS 2881 Fall 26: Lecture 6: Grading, Reward Hacking, and Alignment",
+   "source": "Windows on Theory",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "October 8, 2026 · John Schulman · Scribe notes by Idil Ada, Chenxi Ge, Joaquin, and Harry Hu Notes from CS 2881R: AI Alignment and Safety, Harvard, Fall 2026. Author Introductions Idil Ada: I am a …",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.theatlantic.com/ideas/2026/11/philip-roth-political-novelists/689337/?utm_source=feed",
+   "title": "Philip roth political novelists",
+   "source": "The Atlantic (Ideas)",
+   "category": "essays",
+   "author": "",
+   "why_it_matters": "",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.atlasobscura.com/places/tarrafal-concentration-camp",
+   "title": "Tarrafal Concentration Camp in Chão Bom, Cabo Verde",
+   "source": "Atlas Obscura",
+   "category": "wildcard",
+   "author": "",
+   "why_it_matters": "Portugal’s dictatorship sent its political opponents to this remote Cape Verdean prison, known as the “Camp of Slow Death.”",
+   "wildcard": true,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

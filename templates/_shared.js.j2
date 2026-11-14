@@ -34,29 +34,72 @@
   }
 
   // ── Send bar: one GitHub issue carries ratings and library changes ──────
+  // With a GitHub token saved in this browser, Send files the issue directly (one tap).
+  // Without one, or if the token fails, it opens GitHub's pre-filled issue form instead.
   const bar = document.getElementById("sendbar");
   const msg = document.getElementById("send-msg");
-  function refreshBar(nVotes) {
+  const sendBtn = document.getElementById("send");
+  const TOKEN_KEY = "digest-gh-token", SENT_KEY = "digest-sent";
+  const token = () => load(TOKEN_KEY).t || "";
+  let getVotes = () => [];     // the digest page replaces this with its ratings
+  let useForm = false;         // set after a failed one-tap send: the next tap opens the form
+  const buildPayload = () => JSON.stringify({
+    date: DATE, votes: getVotes(), library: Object.values(pending).map(p => ({ ...p.item, list: p.list })),
+  }, null, 1);
+
+  function refreshBar() {
     if (!bar) return;
-    const nLib = Object.keys(pending).length;
+    const nVotes = getVotes().length, nLib = Object.keys(pending).length;
+    const sent = nVotes + nLib > 0 && load(SENT_KEY).payload === buildPayload();
     bar.classList.toggle("show", nVotes + nLib > 0);
     const parts = [];
     if (nVotes) parts.push(`${nVotes} rating${nVotes === 1 ? "" : "s"}`);
     if (nLib) parts.push(`${nLib} library change${nLib === 1 ? "" : "s"}`);
-    msg.textContent = parts.join(" · ");
+    msg.textContent = sent ? "Sent ✓ Applies at the next build" : parts.join(" · ");
+    sendBtn.hidden = sent;
+    sendBtn.textContent = !REPO ? "Copy JSON" : token() && !useForm ? "Send" : "Send to GitHub";
   }
-  async function sendFeedback(votes) {
-    const library = Object.values(pending).map(p => ({ ...p.item, list: p.list }));
-    const payload = JSON.stringify({ date: DATE, votes, library }, null, 1);
+
+  async function sendFeedback() {
+    const payload = buildPayload();
     if (!REPO) {
       try { await navigator.clipboard.writeText(payload); msg.textContent = "Copied to clipboard"; }
       catch (e) { console.log(payload); msg.textContent = "Logged to console"; }
       return;
     }
+    const title = `${PREFIX} ${DATE}`;
     const body = "Feedback from the morning digest. Submit as-is: the next run reads it, logs it, and closes this issue.\n\n```json\n" + payload + "\n```\n";
-    const url = `https://github.com/${REPO}/issues/new?` + new URLSearchParams({
-      title: `${PREFIX} ${DATE}`, body, labels: "digest-feedback",
-    });
-    window.open(url, "_blank", "noopener");
+    if (token() && !useForm) {
+      msg.textContent = "Sending…"; sendBtn.disabled = true;
+      let problem;
+      try {
+        const r = await fetch(`https://api.github.com/repos/${REPO}/issues`, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token()}`, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+          body: JSON.stringify({ title, body }),
+        });
+        if (r.ok) { store(SENT_KEY, { payload }); sendBtn.disabled = false; refreshBar(); return; }
+        problem = [401, 403, 404].includes(r.status) ? "GitHub rejected the saved token." : `GitHub answered ${r.status}.`;
+      } catch (e) { problem = "Couldn't reach GitHub."; }
+      sendBtn.disabled = false; useForm = true; refreshBar();
+      msg.textContent = problem + " Tap again to use the form";
+      return;
+    }
+    window.open(`https://github.com/${REPO}/issues/new?` + new URLSearchParams({ title, body, labels: "digest-feedback" }), "_blank", "noopener");
     msg.textContent = "Opened. Click “Create” on GitHub";
+  }
+
+  const tokenLink = document.getElementById("token-link");
+  if (tokenLink) {
+    const paintToken = () => { tokenLink.textContent = token() ? "One-tap sending: on" : "Set up one-tap sending"; };
+    tokenLink.addEventListener("click", e => {
+      e.preventDefault();
+      const v = prompt(
+        `Paste a GitHub fine-grained token that can only do one thing: read and write Issues on ${REPO}.\n\n` +
+        "It is kept in this browser only and sent only to api.github.com. Leave it blank to turn one-tap sending off.", "");
+      if (v === null) return;
+      store(TOKEN_KEY, v.trim() ? { t: v.trim() } : {});
+      useForm = false; paintToken(); refreshBar();
+    });
+    paintToken();
   }

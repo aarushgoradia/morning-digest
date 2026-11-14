@@ -17,6 +17,7 @@
     <nav class="shelf" aria-label="Your library">
       <a href="library.html#later">Read later <b data-count="later">0</b></a>
       <a href="library.html#saved">Saved <b data-count="saved">0</b></a>
+      <a href="archive.html">Archive</a>
     </nav>
   </header>
 
@@ -53,7 +54,9 @@
     <p>That's everything for today. See you tomorrow.</p>
     <div class="colophon">
       {{ method }} · {{ n_candidates }} candidates from the last {{ window_hours }} hours<br>
-      <a href="library.html">Your library</a>{% if repo %} &nbsp;·&nbsp;
+      <a href="library.html">Your library</a> &nbsp;·&nbsp;
+      <a href="archive.html">Archive</a>{% if repo %} &nbsp;·&nbsp;
+      <a href="#" id="token-link">Set up one-tap sending</a> &nbsp;·&nbsp;
       <a href="https://github.com/{{ repo }}/blob/main/taste.md">Taste profile</a> &nbsp;·&nbsp;
       <a href="https://github.com/{{ repo }}/blob/main/state/learned_taste.md">What it's learned</a> &nbsp;·&nbsp;
       <a href="https://github.com/{{ repo }}/blob/main/feeds.yaml">Sources</a>{% endif %}
@@ -73,7 +76,10 @@
   const PICKS = {{ picks_js|tojson }};
   const KEY = "digest-feedback-" + DATE;
   let state = load(KEY);
-  const nVotes = () => Object.values(state).filter(s => s.vote).length;
+  getVotes = () => Object.entries(state).filter(([, s]) => s.vote).map(([i, s]) => ({
+    url: PICKS[i].url, title: PICKS[i].title, source: PICKS[i].source, wildcard: PICKS[i].wildcard,
+    vote: s.vote, tags: s.tags || [], note: (s.note || "").trim(),
+  }));
 
   function paint(card) {
     const s = state[card.dataset.idx] || {};
@@ -110,33 +116,28 @@
     card.querySelectorAll(".vote").forEach(b => b.addEventListener("click", () => {
       const cur = state[idx] || {};
       state[idx] = cur.vote === b.dataset.vote ? {} : { vote: b.dataset.vote, tags: [], note: "" };
-      store(KEY, state); paint(card); refreshBar(nVotes());
+      store(KEY, state); paint(card); refreshBar();
     }));
     card.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
       const s = state[idx]; if (!s || !s.vote) return;
       s.tags = s.tags.includes(c.dataset.tag) ? s.tags.filter(t => t !== c.dataset.tag) : [...s.tags, c.dataset.tag];
-      store(KEY, state); paint(card);
+      store(KEY, state); paint(card); refreshBar();
     }));
     card.querySelectorAll(".note").forEach(inp => inp.addEventListener("input", () => {
       const s = state[idx]; if (!s || !s.vote) return;
-      s.note = inp.value; store(KEY, state);
+      s.note = inp.value; store(KEY, state); refreshBar();
     }));
     card.querySelectorAll(".lib").forEach(b => b.addEventListener("click", () => {
       const { wildcard, ...item } = PICKS[idx];
       toggleLib(item, b.dataset.list);
-      paint(card); paintShelfCounts(); refreshBar(nVotes());
+      paint(card); paintShelfCounts(); refreshBar();
     }));
     paint(card);
   });
   paintShelfCounts();
-  refreshBar(nVotes());
+  refreshBar();
 
-  document.getElementById("send").addEventListener("click", () => sendFeedback(
-    Object.entries(state).filter(([, s]) => s.vote).map(([i, s]) => ({
-      url: PICKS[i].url, title: PICKS[i].title, source: PICKS[i].source, wildcard: PICKS[i].wildcard,
-      vote: s.vote, tags: s.tags || [], note: (s.note || "").trim(),
-    }))
-  ));
+  document.getElementById("send").addEventListener("click", () => sendFeedback());
 })();
 </script>
 </body>

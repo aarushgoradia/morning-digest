@@ -3,10 +3,12 @@
 Every night, GitHub Actions builds the next morning's digest. It's scheduled several times after midnight Eastern, because GitHub often starts scheduled runs hours late; the first run of the day does the work and the rest exit early. Each run:
 
 1. collects new items from the feeds in `feeds.yaml` (last 48 hours, widening to 7 days on slow days; anything already shown is skipped),
-2. has Claude (`claude-haiku-5-5`) pick the 5 best against `taste.md` (4 picks plus 1 wildcard from outside your usual interests), each with a one-line reason to read it,
-3. renders one static page and deploys it to GitHub Pages.
+2. has Claude (`claude-sonnet-5-5`) pick the 5 best against `taste.md`, in two passes: a shortlist of about 14 from the excerpts, then a final pick after reading the opening 1,500 words of each shortlisted piece. The 5 are 4 picks plus 1 wildcard from outside your usual interests, each with a one-line reason to read it. The 4 are 2-3 STEM pieces from different fields plus at least one essay, literary or history piece, and the last few days' picks are shown to the ranker so the fields rotate,
+3. saves the day's picks to `state/archive/` and renders the pages (today's digest, Library, Archive), then deploys them to GitHub Pages.
 
-The page has 👍/👎 buttons on each pick, with reason tags (too verbose, too shallow, great depth…) and an optional note. **Send today's feedback** opens one pre-filled GitHub issue. Submit it and the next run:
+Pieces that need an earlier post to make sense (part 4 of a series, mid-course lecture notes) are flagged and skipped, and no source gets two picks in one day.
+
+The page has 👍/👎 buttons on each pick, with reason tags (too verbose, too shallow, great depth…) and an optional note. **Send to GitHub** opens one pre-filled GitHub issue. Submit it and the next run:
 
 - logs the votes to `state/feedback.jsonl` and closes the issue,
 - includes your last ~25 reactions (with reasons) in the ranking prompt,
@@ -17,6 +19,10 @@ Each piece also has **Read later** and **Save** buttons. They work instantly in 
 
 Only issues opened by the repo owner are read, so other people can't change your taste profile.
 
+### One-tap sending (optional)
+
+To skip the trip to GitHub, create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) limited to this one repository with a single permission, **Issues: Read and write**. Then click **Set up one-tap sending** at the bottom of the digest and paste it. The token stays in that browser's local storage (do it once per device) and is sent only to `api.github.com`. After that the button reads **Send** and files the issue itself. If the token expires or fails, the button falls back to the pre-filled form.
+
 ## Files
 
 | File | What it is |
@@ -25,12 +31,12 @@ Only issues opened by the repo owner are read, so other people can't change your
 | `taste.md` | Your taste profile, written by you. Edit it any time. |
 | `digest.py` | Fetch → rank → render |
 | `templates/` | The page: Newsreader + Inter type, light and dark themes, follows your system setting |
-| `state/` | Committed by the workflow: `seen.json`, `feedback.jsonl`, `library.json`, `learned_taste.md`, `meta.json`, `pages.json` |
+| `state/` | Committed by the workflow: `seen.json`, `feedback.jsonl`, `library.json`, `learned_taste.md`, `meta.json`, `pages.json`, and `archive/` (one ~2 KB JSON file per day, shown on the Archive page) |
 
 ## Setup
 
 1. **Push this folder to a GitHub repo.** The repo is public by default, so your feedback is too.
-2. **Add your API key.** Go to **Settings → Secrets and variables → Actions → New repository secret** and add `ANTHROPIC_API_KEY`. The model is `claude-haiku-5-5`; set an `ANTHROPIC_MODEL` env var to override it.
+2. **Add your API key.** Go to **Settings → Secrets and variables → Actions → New repository secret** and add `ANTHROPIC_API_KEY`. The model is `claude-sonnet-5-5`; set an `ANTHROPIC_MODEL` env var to override it (`claude-haiku-5-5` is cheaper and less careful).
 3. **Enable Pages.** Go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
 4. **Allow the workflow to push.** Go to **Settings → Actions → General → Workflow permissions** and choose **Read and write permissions**. This lets it commit `state/`.
 5. **Run it once.** Go to **Actions → Daily digest → Run workflow**. The page will be at `https://<you>.github.io/<repo>/`.
@@ -61,6 +67,6 @@ ANTHROPIC_API_KEY=sk-ant-... python digest.py --dry-run
 ## Tuning
 
 - **Change what you want:** edit `taste.md`. It's the top-priority input to the ranker.
-- **Add or remove sources:** edit `feeds.yaml` (136 sources, grouped by topic). Feeds tagged `wildcard` exist mainly to supply the wildcard slot. Each source contributes at most its 5 newest items per day, so busy feeds can't crowd out quiet blogs.
+- **Add or remove sources:** edit `feeds.yaml` (171 sources, grouped by topic). Feeds tagged `wildcard` exist mainly to supply the wildcard slot. Each source contributes at most its 5 newest items per day, so busy feeds can't crowd out quiet blogs.
 - **A blog with no RSS feed:** add it with `type: page` and a `link_pattern` regex matching its post URLs (see the Rikiya Takehi entry). The digest watches the index page for new links and reads each new post's title, date and description once.
 - **Window:** set the `LOOKBACK_HOURS` env var (default 48).

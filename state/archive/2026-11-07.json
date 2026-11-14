@@ -1,0 +1,117 @@
+{
+ "date": "2026-11-07",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://aeon.co/essays/why-astrophysics-needs-to-abandon-the-big-questions",
+   "title": "Why astrophysics needs to abandon the ‘Big Questions’ | Aeon Essays",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "",
+   "why_it_matters": "The cosmos has become a lab for the Big Questions in physics. Along the way, we’ve lost sight of its glorious messiness",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://newsletter.semianalysis.com/p/tpu-strikes-the-king",
+   "title": "The Iron(wood) Throne: Google's TPU Stakes Its Claim on Inference",
+   "source": "SemiAnalysis",
+   "category": "hardware",
+   "author": "Bryan Shan",
+   "why_it_matters": "Viable Alternative of CUDA Moat, NVIDIA scared and working nights & weekends, Jensen’s Counter Submission, Kimi K3, Muse Spark Open, Qwen, GLM5.3, TorchTPU, vLLM, SGLang, llm-d, Ray",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://scottaaronson.blog/?p=10283",
+   "title": "Thoughts on a historic week",
+   "source": "Shtetl-Optimized (Scott Aaronson)",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "As everyone knows, this week was a (an?) historic one for the State of Texas and for the United States as a whole—because this is the week when my wife Dana finally gave a 3-hour public lectu…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.argmin.net/p/the-unholy-methods-of-soothsayers",
+   "title": "The Unholy Methods of Soothsayers",
+   "source": "arg min (Ben Recht)",
+   "category": "ai-ml",
+   "author": "Ben Recht",
+   "why_it_matters": "Defensive Forecasting and the mechanical crank of prediction.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.astralcodexten.com/p/your-book-review-orality-and-literacy",
+   "title": "Your Book Review: Orality and Literacy",
+   "source": "Astral Codex Ten",
+   "category": "essays",
+   "author": "Scott Alexander",
+   "why_it_matters": "Finalist #15 in the Book Review contest",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.construction-physics.com/p/how-do-building-codes-affect-the",
+   "title": "How Do Building Codes Affect the Price of Housing?",
+   "source": "Construction Physics",
+   "category": "wildcard",
+   "author": "Brian Potter",
+   "why_it_matters": "A great deal of effort has gone into understanding the regulatory burden on housing construction, and the extent to which it contributes to high housing prices.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.filfre.net/2026/11/deus-ex/",
+   "title": "» Deus Ex The Digital Antiquarian",
+   "source": "The Digital Antiquarian",
+   "category": "history",
+   "author": "",
+   "why_it_matters": "",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.lesswrong.com/posts/CDMozTX7ShiqbFLrf/towards-understanding-score-seeking-in-llms-1",
+   "title": "Towards understanding score-seeking in LLMs — LessWrong",
+   "source": "LessWrong (curated)",
+   "category": "ai-ml",
+   "author": "",
+   "why_it_matters": "The field of AI alignment understands surprisingly little about the details of AIs’ current misaligned motivations. Production LLMs sometimes reward-…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.planned-obsolescence.org/p/ai-is-dramatically-accelerating-ai",
+   "title": "AI is dramatically accelerating AI research right now",
+   "source": "planned-obsolescence.org",
+   "category": "",
+   "author": "Ajeya Cotra",
+   "why_it_matters": "If acceleration compounds, the naive extrapolation implies superintelligence within a year",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.quantamagazine.org/a-strange-quantum-theorem-has-killed-einsteins-reality-20261106/",
+   "title": "A Strange Quantum Theorem Has Killed Einstein’s Reality | Quanta Magazine",
+   "source": "Quanta Magazine",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "Albert Einstein fought to save our everyday notion of reality from the strangeness of quantum mechanics. But those who set out to aid him keep poking holes in his argument.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

@@ -10,6 +10,7 @@
     <div class="eyebrow">The Morning Digest</div>
     <h1>Your <em>Library</em></h1>
     <a class="back" href="./">← Back to today's digest</a>
+    <nav class="shelf" aria-label="More"><a href="archive.html">Archive</a></nav>
   </header>
 
   <section id="later" aria-labelledby="later-h">
@@ -27,6 +28,7 @@
   <footer class="end">
     <div class="fleuron">❦</div>
     <p>Changes you make here sync once you send them, like your ratings.</p>
+    {% if repo %}<div class="colophon"><a href="#" id="token-link">Set up one-tap sending</a></div>{% endif %}
   </footer>
 </div>
 
@@ -101,7 +103,7 @@
       }
     });
     paintShelfCounts();
-    refreshBar(0);
+    refreshBar();
   }
 
   function change(i, list) {
@@ -111,7 +113,7 @@
   }
 
   render();
-  document.getElementById("send").addEventListener("click", () => sendFeedback([]));
+  document.getElementById("send").addEventListener("click", () => sendFeedback());
 })();
 </script>
 </body>

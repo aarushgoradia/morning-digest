@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-10",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://dynomight.net/android/",
+   "title": "The Android lockdown seems under-theorized",
+   "source": "Dynomight",
+   "category": "essays",
+   "author": "dynomight",
+   "why_it_matters": "the stalemate on general computation",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://semiengineering.com/which-passing-chips-need-more-testing/",
+   "title": "Which Passing Chips Need More Testing?",
+   "source": "Semiconductor Engineering",
+   "category": "hardware",
+   "author": "Gregory Haley",
+   "why_it_matters": "Manufacturers are using test data and predictive models to identify marginal chips and determine when additional screening is justified.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://spectrum.ieee.org/find-my-ai-chip",
+   "title": "Can a ‘Find My’ for AI Chips Really Stop High Stakes Smuggling?",
+   "source": "IEEE Spectrum (Robotics)",
+   "category": "robotics",
+   "author": "",
+   "why_it_matters": "Location verification could help deter chip smuggling and diversion",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.infinitelymore.xyz/p/thue-morse-sequence",
+   "title": "How a Mathematical Discovery Changed the Rules of Chess",
+   "source": "Infinitely More (Joel David Hamkins)",
+   "category": "math-physics",
+   "author": "Joel David Hamkins",
+   "why_it_matters": "We shall introduce the Thue-Morse sequence and explore its fascinating features, among them an application to chess, which caused an urgent need in 1929 to change the old rule on 3-fold repetition.",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.theatlantic.com/magazine/2026/12/aquaterra-ancient-human-migration/689029/?utm_source=feed",
+   "title": "Aquaterra ancient human migration",
+   "source": "The Atlantic (Ideas)",
+   "category": "essays",
+   "author": "",
+   "why_it_matters": "",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

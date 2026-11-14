@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-13",
+ "method": "Rebuilt from the list of shown links; the original one-line reasons weren't kept",
+ "n_candidates": null,
+ "picks": [
+  {
+   "url": "https://aeon.co/essays/a-new-answer-to-why-there-is-something-rather-than-nothing",
+   "title": "A new answer to why there is something rather than nothing | Aeon Essays",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "",
+   "why_it_matters": "Here’s a new answer to the old question ‘why is there something rather than nothing?’ (It’s neither simple nor easy)",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://longreads.com/2026/11/13/texas-monthly-mental-hospital/",
+   "title": "One Woman’s Fight to Free Herself From a Mental Hospital - Longreads",
+   "source": "Longreads",
+   "category": "wildcard",
+   "author": "Peter Rubin",
+   "why_it_matters": "\"First there was the cancer, then the devastating breakup, and finally came the breakdown. Millie Kerr sought help at one of America’s top psychiatric institutions. It turned into a nightmare.\"",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://newsletter.semianalysis.com/p/nvidia-and-the-world-without-jensen",
+   "title": "Nvidia and the World Without Jensen",
+   "source": "SemiAnalysis",
+   "category": "hardware",
+   "author": "Dylan Patel",
+   "why_it_matters": "Is NVIDIA Over? Export Controls, RASA, Open Source Implications, Supply Chain Implications, Affair, US Still Dependent On China",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.jeremykun.com/2026/11/11/ckks-rescaling/",
+   "title": "CKKS — Rescaling",
+   "source": "Jeremy Kun",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "Table of Contents\nThis is part of a tutorial series on the CKKS homomorphic encryption scheme.\nIn the last article, we described the key switching and relinearization algorithms. Relinearization allowed us to restore …",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  },
+  {
+   "url": "https://www.lesswrong.com/posts/HuQAuWjc2Z5tqCjyw/scattered-thoughts-on-how-doing-math-feels-these-days",
+   "title": "Scattered thoughts on how doing math feels these days — LessWrong",
+   "source": "LessWrong (curated)",
+   "category": "ai-ml",
+   "author": "",
+   "why_it_matters": "This is a weird moment. I have a hunch that we'll look back later and tell ourselves stories in which it seemed obvious where things were going. So I…",
+   "wildcard": false,
+   "score": null,
+   "minutes": null
+  }
+ ]
+}

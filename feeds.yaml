@@ -1,6 +1,7 @@
-# Sources the digest pulls from. All URLs were verified working from GitHub Actions on 2026-11-06.
-# Substack newsletters on substack.com refuse requests from GitHub's servers (403), so
-# they're left out; run `python digest.py --check-feeds` (or the workflow with
+# Sources the digest pulls from. The original list was verified working from GitHub Actions on
+# 2026-11-06; the sources added 2026-11-13 were verified from a laptop only.
+# Substack newsletters on substack.com have refused requests from GitHub's servers (403), so
+# most are left out and the few included are marked; run `python digest.py --check-feeds` (or the workflow with
 # check_feeds=true) to see which sources work.
 #
 #   name:      shown on the page
@@ -24,6 +25,13 @@ feeds:
   - {name: SIGARCH Computer Architecture Today, url: "https://www.sigarch.org/blog/feed/", category: hardware}
   - {name: The Next Platform, url: "https://www.nextplatform.com/feed/", category: hardware}
   - {name: Semiconductor Engineering, url: "https://semiengineering.com/feed/", category: hardware}
+  - {name: Chipstrat (Austin Lyons), url: "https://www.chipstrat.com/feed", category: hardware}
+  - {name: Vik's Newsletter, url: "https://www.viksnewsletter.com/feed", category: hardware}
+  - {name: Tom Verbeure, url: "https://tomverbeure.github.io/feed.xml", category: hardware}
+  - {name: Zero to ASIC (Matt Venn), url: "https://www.zerotoasiccourse.com/index.xml", category: hardware}
+  - {name: ZipCPU, url: "https://zipcpu.com/feed.xml", category: hardware}
+  - {name: The Chip Letter, url: "https://thechipletter.substack.com/feed", category: hardware} # substack.com, see note below
+  - {name: More Than Moore (Ian Cutress), url: "https://morethanmoore.substack.com/feed", category: hardware} # substack.com
 
   # ───────────────────────── Systems & performance
   - {name: Dan Luu, url: "https://danluu.com/atom.xml", category: systems}
@@ -37,6 +45,9 @@ feeds:
   - {name: matklad, url: "https://matklad.github.io/feed.xml", category: systems}
   - {name: Jamie Brandon, url: "https://www.scattered-thoughts.net/atom.xml", category: systems}
   - {name: Bert Hubert, url: "https://berthub.eu/articles/index.xml", category: systems}
+  - {name: Oxide, url: "https://oxide.computer/blog/feed", category: systems}
+  - {name: Daniel Lemire, url: "https://lemire.me/blog/feed/", category: systems}
+  - {name: Yossi Kreinin, url: "https://yosefk.com/blog/feed", category: systems}
 
   # ───────────────────────── AI / ML: research blogs & thoughtful takes
   - name: Rikiya Takehi
@@ -73,6 +84,33 @@ feeds:
   - {name: Eugene Yan, url: "https://eugeneyan.com/rss/", category: ai-ml}
   - {name: Vicki Boykis, url: "https://vickiboykis.com/index.xml", category: ai-ml}
   - {name: Max Woolf, url: "https://minimaxir.com/index.xml", category: ai-ml}
+  - {name: Jack Morris, url: "https://blog.jxmo.io/feed", category: ai-ml}
+  - {name: Finbarr Timbers, url: "https://finbarr.ca/feed.xml", category: ai-ml}
+  - {name: CMU ML Blog, url: "https://blog.ml.cmu.edu/feed/", category: ai-ml}
+  - {name: Google Research, url: "https://research.google/blog/rss/", category: ai-ml}
+  - {name: Epoch AI (Gradient Updates), url: "https://epochai.substack.com/feed", category: ai-ml} # substack.com
+
+  # ───────────────────────── Robotics & reinforcement learning
+  # Good robotics/RL writing is scarce and mostly posts monthly, so expect a pick from
+  # here a few times a week, not daily. Three of the best are on substack.com, which has
+  # refused GitHub's servers before: run the workflow with check_feeds=true to see
+  # whether they get through. If they don't, they're harmless (skipped with a warning).
+  - name: Physical Intelligence
+    url: "https://www.pi.website/blog"
+    type: page
+    link_pattern: "^/(blog|research)/[^/]+/?$"
+    category: robotics
+  - {name: Rodney Brooks, url: "https://rodneybrooks.com/feed/", category: robotics}
+  - {name: Eric Jang, url: "https://evjang.com/feed.xml", category: robotics}
+  - {name: Vincent Vanhoucke, url: "https://vanhoucke.medium.com/feed", category: robotics}
+  - {name: Sorta Insightful (Alex Irpan), url: "https://www.alexirpan.com/feed.xml", category: robotics}
+  - {name: Artificial Fintelligence (Finbarr Timbers), url: "https://www.artfintel.com/feed", category: robotics}
+  - {name: Google DeepMind, url: "https://deepmind.google/blog/feed/basic/", category: robotics}
+  - {name: IEEE Spectrum (Robotics), url: "https://spectrum.ieee.org/feeds/topic/robotics.rss", category: robotics}
+  - {name: Robohub, url: "https://robohub.org/feed/", category: robotics}
+  - {name: It Can Think! (Chris Paxton), url: "https://itcanthink.substack.com/feed", category: robotics} # substack.com
+  - {name: General Robots (Benjie Holson), url: "https://generalrobots.substack.com/feed", category: robotics} # substack.com
+  - {name: Learning and Control (Sergey Levine), url: "https://sergeylevine.substack.com/feed", category: robotics} # substack.com
 
   # ───────────────────────── Math, CS theory & physics (the "cool idea" level)
   - {name: Quanta Magazine, url: "https://www.quantamagazine.org/feed/", category: math-physics}
@@ -95,6 +133,14 @@ feeds:
   - {name: Not Even Wrong, url: "https://www.math.columbia.edu/~woit/wordpress/?feed=rss2", category: math-physics}
   - {name: Backreaction (Sabine Hossenfelder), url: "https://backreaction.blogspot.com/feeds/posts/default", category: math-physics}
   - {name: Galileo Unbound, url: "https://galileo-unbound.blog/feed/", category: math-physics}
+  - {name: Mathematical Enchantments (Jim Propp), url: "https://mathenchant.wordpress.com/feed/", category: math-physics}
+  - {name: The Palindrome (Tivadar Danka), url: "https://thepalindrome.org/feed", category: math-physics}
+  - {name: Tanya Khovanova, url: "https://blog.tanyakhovanova.com/feed/", category: math-physics}
+  - {name: Matt Baker, url: "https://mattbaker.blog/feed/", category: math-physics}
+  - {name: Math3ma (Tai-Danae Bradley), url: "https://www.math3ma.com/blog/rss.xml", category: math-physics}
+  - {name: 4 gravitons, url: "https://4gravitons.com/feed/", category: math-physics}
+  - {name: Quantum Frontiers (Caltech), url: "https://quantumfrontiers.com/feed/", category: math-physics}
+  - {name: nanoscale views (Doug Natelson), url: "https://nanoscale.blogspot.com/feeds/posts/default", category: math-physics}
 
   # ───────────────────────── Interactive explainers
   - {name: Bartosz Ciechanowski, url: "https://ciechanow.ski/atom.xml", category: explainers}
