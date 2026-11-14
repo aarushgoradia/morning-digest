@@ -18,6 +18,7 @@ import logging
 import os
 import re
 import sys
+import time
 import urllib.parse
 import urllib.error
 import urllib.request
@@ -85,14 +86,23 @@ def word_count(text: str) -> int:
 def http_get(url: str, timeout: int = 15, headers: dict | None = None) -> bytes:
     # Try browser-like headers first; some sites block those instead, so on a 403
     # retry once as a plain, honest bot.
+    # A 429 (rate limit) gets two more tries after a pause.
     attempts = [BROWSER_HEADERS, {"User-Agent": USER_AGENT}]
-    for i, base in enumerate(attempts):
-        req = urllib.request.Request(url, headers={**base, **(headers or {})})
+    waits = [5, 15]
+    i = 0
+    while True:
+        req = urllib.request.Request(url, headers={**attempts[i], **(headers or {})})
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return resp.read()
         except urllib.error.HTTPError as exc:
-            if exc.code != 403 or i == len(attempts) - 1:
+            if exc.code == 429 and waits:
+                retry_after = exc.headers.get("Retry-After", "") if exc.headers else ""
+                time.sleep(min(int(retry_after), 30) if retry_after.isdigit() else waits[0])
+                waits.pop(0)
+            elif exc.code == 403 and i < len(attempts) - 1:
+                i += 1
+            else:
                 raise
 
 

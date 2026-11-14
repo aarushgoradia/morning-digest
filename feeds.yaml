@@ -1,7 +1,7 @@
 # Sources the digest pulls from. The original list was verified working from GitHub Actions on
 # 2026-11-06; the sources added 2026-11-13 were verified from a laptop only.
 # Substack newsletters on substack.com have refused requests from GitHub's servers (403), so
-# most are left out and the few included are marked; run `python digest.py --check-feeds` (or the workflow with
+# they're left out (subscribe by email instead); run `python digest.py --check-feeds` (or the workflow with
 # check_feeds=true) to see which sources work.
 #
 #   name:      shown on the page
@@ -30,8 +30,6 @@ feeds:
   - {name: Tom Verbeure, url: "https://tomverbeure.github.io/feed.xml", category: hardware}
   - {name: Zero to ASIC (Matt Venn), url: "https://www.zerotoasiccourse.com/index.xml", category: hardware}
   - {name: ZipCPU, url: "https://zipcpu.com/feed.xml", category: hardware}
-  - {name: The Chip Letter, url: "https://thechipletter.substack.com/feed", category: hardware} # substack.com, see note below
-  - {name: More Than Moore (Ian Cutress), url: "https://morethanmoore.substack.com/feed", category: hardware} # substack.com
 
   # ───────────────────────── Systems & performance
   - {name: Dan Luu, url: "https://danluu.com/atom.xml", category: systems}
@@ -59,7 +57,11 @@ feeds:
   - {name: Interconnects (Nathan Lambert), url: "https://www.interconnects.ai/feed", category: ai-ml}
   - {name: Andrej Karpathy, url: "https://karpathy.bearblog.dev/feed/", category: ai-ml}
   - {name: Andrej Karpathy (blog), url: "https://karpathy.github.io/feed.xml", category: ai-ml}
-  - {name: Thinking Machines, url: "https://thinkingmachines.ai/blog/index.xml", category: ai-ml}
+  - name: Thinking Machines
+    url: "https://thinkingmachines.ai/blog/"
+    type: page
+    link_pattern: "^/blog/[^/]+/$"
+    category: ai-ml
   - {name: Sander Dieleman, url: "https://sander.ai/feed.xml", category: ai-ml}
   - {name: Tri Dao, url: "https://tridao.me/feed.xml", category: ai-ml}
   - {name: Horace He, url: "https://www.thonking.ai/feed", category: ai-ml}
@@ -88,13 +90,11 @@ feeds:
   - {name: Finbarr Timbers, url: "https://finbarr.ca/feed.xml", category: ai-ml}
   - {name: CMU ML Blog, url: "https://blog.ml.cmu.edu/feed/", category: ai-ml}
   - {name: Google Research, url: "https://research.google/blog/rss/", category: ai-ml}
-  - {name: Epoch AI (Gradient Updates), url: "https://epochai.substack.com/feed", category: ai-ml} # substack.com
 
   # ───────────────────────── Robotics & reinforcement learning
   # Good robotics/RL writing is scarce and mostly posts monthly, so expect a pick from
-  # here a few times a week, not daily. Three of the best are on substack.com, which has
-  # refused GitHub's servers before: run the workflow with check_feeds=true to see
-  # whether they get through. If they don't, they're harmless (skipped with a warning).
+  # here a few times a week, not daily. Chris Paxton, Benjie Holson and Sergey Levine write
+  # on substack.com, which blocks GitHub's servers; they're read by email instead.
   - name: Physical Intelligence
     url: "https://www.pi.website/blog"
     type: page
@@ -108,9 +108,6 @@ feeds:
   - {name: Google DeepMind, url: "https://deepmind.google/blog/feed/basic/", category: robotics}
   - {name: IEEE Spectrum (Robotics), url: "https://spectrum.ieee.org/feeds/topic/robotics.rss", category: robotics}
   - {name: Robohub, url: "https://robohub.org/feed/", category: robotics}
-  - {name: It Can Think! (Chris Paxton), url: "https://itcanthink.substack.com/feed", category: robotics} # substack.com
-  - {name: General Robots (Benjie Holson), url: "https://generalrobots.substack.com/feed", category: robotics} # substack.com
-  - {name: Learning and Control (Sergey Levine), url: "https://sergeylevine.substack.com/feed", category: robotics} # substack.com
 
   # ───────────────────────── Math, CS theory & physics (the "cool idea" level)
   - {name: Quanta Magazine, url: "https://www.quantamagazine.org/feed/", category: math-physics}
