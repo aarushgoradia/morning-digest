@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-15",
+ "method": "Ranked by claude-sonnet-5-5, which read 11 of 14 shortlisted pieces",
+ "n_candidates": 73,
+ "picks": [
+  {
+   "url": "https://www.beren.io/2026-11-14-Nature-Abhors-an-Infinity/",
+   "title": "Nature Abhors an Infinity",
+   "source": "Beren Millidge",
+   "category": "ai-ml",
+   "author": "Beren Millidge",
+   "why_it_matters": "Argues that quantum mechanics, GR and the cosmological constant jointly close every loophole to observer-accessible infinity, from the Holevo bound to Dyson's eternal computer.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 10
+  },
+  {
+   "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+   "title": "Understanding Positional Embeddings in Modern LLMs",
+   "source": "Sebastian Raschka",
+   "category": "ai-ml",
+   "author": "Sebastian Raschka, PhD",
+   "why_it_matters": "Walks from GPT-2's learned absolute embeddings through RoPE to NoPE, with code, and shows what 2026 open-weight models actually use for position.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 39
+  },
+  {
+   "url": "https://www.theatlantic.com/ideas/2026/11/hitler-langer-cia-psychoanalysis/689434/?utm_source=feed",
+   "title": "The Mind of a Megalomaniac",
+   "source": "The Atlantic (Ideas)",
+   "category": "essays",
+   "author": "Timothy W. Ryback",
+   "why_it_matters": "Narrative history of a secret government report that foresaw Hitler's final two years in power, and what that says about reading a megalomaniac.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 7
+  },
+  {
+   "url": "https://lemire.me/blog/2026/11/14/reading-json-at-277-gb-s-in-python/",
+   "title": "Reading JSON at 277 GB/s in Python",
+   "source": "Daniel Lemire",
+   "category": "systems",
+   "author": "Daniel Lemire",
+   "why_it_matters": "Shows how free-threaded Python 3.14 and field-selective SIMD parsing reach 277 GB/s on 192 cores, and where process pools stop scaling.",
+   "wildcard": false,
+   "score": 6,
+   "minutes": 3
+  },
+  {
+   "url": "https://zwischenzugs.com/2026/11/03/a-family-tree-of-software-job-titles/",
+   "title": "A family tree of software job titles",
+   "source": "Hacker News (best)",
+   "category": "wildcard",
+   "author": "umerf",
+   "why_it_matters": "A 104-title lineage of software jobs from 'Computer' to context engineer, showing titles split, merge and recycle, and why the AI-replaces-coding story has a 1947 precedent.",
+   "wildcard": true,
+   "score": 6,
+   "minutes": 5
+  }
+ ]
+}
