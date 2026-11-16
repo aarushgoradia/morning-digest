@@ -1,1 +1,11 @@
-{}
+{
+ "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings": {
+  "added": "2026-11-15",
+  "category": "ai-ml",
+  "list": "later",
+  "source": "Sebastian Raschka",
+  "title": "Understanding Positional Embeddings in Modern LLMs",
+  "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+  "why_it_matters": "Walks from GPT-2's learned absolute embeddings through RoPE to NoPE, with code, and shows what 2026 open-weight models actually use for position."
+ }
+}

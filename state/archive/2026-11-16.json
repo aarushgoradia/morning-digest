@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-16",
+ "method": "Ranked by claude-sonnet-5-5, which read 13 of 14 shortlisted pieces",
+ "n_candidates": 62,
+ "picks": [
+  {
+   "url": "https://aeon.co/essays/the-origins-of-the-state-are-not-agrarian-but-pastoralist",
+   "title": "The horse made the state",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "Lhamsuren Munkh-Erdene",
+   "why_it_matters": "Argues that transport animals, not grain, made the state, and that the grain thesis traces to Lattimore's Cold War politics rather than archaeology.",
+   "wildcard": false,
+   "score": 9,
+   "minutes": 37
+  },
+  {
+   "url": "https://iter.ca/post/ubo-uxss/",
+   "title": "Universal XSS in uBlock Origin from website-driven element picker",
+   "source": "Hacker News (best)",
+   "category": "wildcard",
+   "author": "zaik",
+   "why_it_matters": "A concrete exploit chain: a leaked extension UUID, an iframe-driven element picker and a newline injected into a filter option give universal XSS in uBlock Origin.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 4
+  },
+  {
+   "url": "https://contraptions.venkateshrao.com/p/the-profligacy-principle",
+   "title": "The Profligacy Principle",
+   "source": "Contraptions (Venkatesh Rao)",
+   "category": "essays",
+   "author": "Venkatesh Rao",
+   "why_it_matters": "Inverts Occam's razor into a 'waste entities' principle, extending Alan Kay's 'waste transistors' to generative AI, nature and worlding.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 25
+  },
+  {
+   "url": "https://nautil.us/a-dead-star-is-flashing-radio-waves-every-8-minutes-1286645/",
+   "title": "A Dead Star Is Flashing Radio Waves Every 8 Minutes",
+   "source": "Nautilus",
+   "category": "science-essays",
+   "author": "Natasha Hurley-Walker",
+   "why_it_matters": "Shows how pulse-timing delays and a barely wobbling Sun-like star weigh an unseen companion, revealing a white dwarf pulsar that is too light to be a neutron star.",
+   "wildcard": false,
+   "score": 6,
+   "minutes": 6
+  },
+  {
+   "url": "https://preposterousuniverse.com/podcast/2026/11/16/374-lindsey-fitzharris-on-forensic-pathology-reconstructive-surgery-and-sherlock-holmes/",
+   "title": "374 | Lindsey Fitzharris on Forensic Pathology, Reconstructive Surgery, and Sherlock Holmes",
+   "source": "Sean Carroll",
+   "category": "math-physics",
+   "author": "Sean Carroll",
+   "why_it_matters": "The real surgeon behind Sherlock Holmes's deductive method, plus Harold Gillies and WWI facial reconstruction: well-told history of medicine from an unfamiliar field.",
+   "wildcard": true,
+   "score": 6,
+   "minutes": 58
+  }
+ ]
+}
