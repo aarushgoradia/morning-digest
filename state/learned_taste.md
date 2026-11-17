@@ -1,12 +1,19 @@
 # Learned from your feedback
 
-_Auto-generated weekly from 5 votes. Last updated 2026-11-09. Edit taste.md, not this file._
+_Auto-generated weekly from 13 votes. Last updated 2026-11-17. Edit taste.md, not this file._
 
-- Depth wins: the liked AI picks (Dwarkesh on AI deception, SemiAnalysis on TPUs) are long, analytical, and explained well, so favor deep dives over news-cycle pieces even when they're on hot topics.
-- Hardware-and-inference coverage is a clear hit. The SemiAnalysis TPU piece landed because it treats chip economics and strategy seriously, so chip-design and inference-hardware analysis is a strong fit.
-- Ideas with a contrarian or critical angle on methods land well: Ben Recht's take on soothsaying-style claims in ML/forecasting fits the "thoughtful takes" interest better than neutral overviews.
-- Wildcards that teach something new are the ones that stick. The Tarrafal camp piece was liked for being new to them, which suggests narrative history and little-known historical places outperform quirky trivia.
-- The Futility Closet wildcard got only lukewarm praise ("interesting," but not a fan). Light puzzles or trivia are weaker wildcards than substantive, well-told stories from unfamiliar fields.
-- Wildcard picks should be substantive, not just novel: a historical or place-based long read beats a fun-fact piece.
-- Lean toward established analytical voices (Recht, Patel, SemiAnalysis) whose posts are long-form and opinionated; these match the "strong voice and a real idea" criterion.
-- No feedback yet on essays, short fiction, or math/physics picks, so keep those in the mix but don't overweight them until there's signal.
+- **Depth and clear writing beat topic match.** "Great depth" and "well written" are the most common reasons for a like. SemiAnalysis, Thinking Machines, and Lemire's piece all landed because they explain mechanisms in detail and stay readable. Long, substantive technical pieces are fine if the prose is good.
+
+- **Chip and infrastructure pieces do best with an economic or strategic angle.** The TPU-for-inference piece and the Inner Mongolia "Stargate" visit were both liked. SemiAnalysis is a reliable source. Pieces that tie hardware to economics, scale, or geography work better than pure microarchitecture.
+
+- **Low-level performance and numerics work gets a yes.** The 4-bit training piece was marked "more like this," and the 277 GB/s JSON piece also landed. Prefer posts on quantization, low-precision training, and systems optimization where the author walks through the how and why.
+
+- **Hard-but-self-contained pieces are welcome; series installments are not.** "Nature Abhors an Infinity" was admittedly difficult and still liked. The CKKS rescaling post was rejected because it depended on earlier posts in the series. Difficulty isn't the problem. Missing prerequisites are. Skip anything that is part N of a sequence, even from a good author.
+
+- **Reflective, meta-level pieces on AI and math work.** The LessWrong piece on how doing math feels, Ben Recht's essay on methods, and the Dwarkesh benchmark post all landed. Opinionated, idea-driven writing about how the field works is a safe pick, ahead of tutorials or derivations.
+
+- **Philosophical essays land when well written.** The Aeon piece "Why anything exists" was liked purely for the writing. Aeon-style pieces on big questions fit.
+
+- **Wildcards work best when they're concrete and new to the reader.** Liked wildcards included the Atlas Obscura piece on a concentration camp in Cabo Verde, a software job-title family tree, and a Futility Closet puzzle. Offbeat history, places, and curiosities are hits. The reaction to the puzzle was lukewarm ("interesting"), so favor the history and place-based picks over recreational-math trivia.
+
+- **Nothing disliked has been news or hype**, so the exclusion list is working. The only miss was a prerequisite problem, not a topic problem.

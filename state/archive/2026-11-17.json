@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-17",
+ "method": "Ranked by claude-sonnet-5-5, which read 14 of 14 shortlisted pieces",
+ "n_candidates": 107,
+ "picks": [
+  {
+   "url": "https://chipsandcheese.com/p/talking-venice-with-mahesh-subramony",
+   "title": "Talking Venice with Mahesh Subramony at AMD In-Depth",
+   "source": "Chips and Cheese",
+   "category": "hardware",
+   "author": "George Cozma",
+   "why_it_matters": "AMD's server architect explains why Venice moved to 2.5D packaging, split the I/O die, and added a spare 33rd core, with power, yield, and cost reasoning.",
+   "wildcard": false,
+   "score": 9,
+   "minutes": 9
+  },
+  {
+   "url": "http://brooker.co.za/blog/2026/11/16/understanding.html",
+   "title": "What does it mean to understand what we built?",
+   "source": "Marc Brooker",
+   "category": "systems",
+   "author": "marcbrooker@gmail.com (Marc Brooker)",
+   "why_it_matters": "Argues that software understanding should shift from code to as-built system properties, asking for Bode-plot-style tools for emergent behavior like metastable failures.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 3
+  },
+  {
+   "url": "https://robohub.org/robot-swarms-trained-by-trial-and-error-in-simulation-keep-working-on-real-robots/",
+   "title": "Robot swarms trained by trial and error in simulation keep working on real robots",
+   "source": "Robohub",
+   "category": "robotics",
+   "author": "IRIDIA",
+   "why_it_matters": "Treats the sim-to-real gap as overfitting: limiting RL to switching among fixed behaviors transfers reliably to 20 real robots, and simpler policies beat flexible ones.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 5
+  },
+  {
+   "url": "https://www.themarginalian.org/2026/11/16/j-r-r-tolkien-on-fairy-stories/",
+   "title": "J.R.R. Tolkien on Fairy Tales, Language, the Psychology of Fantasy, and Why There’s No Such Thing as Writing “For Children”",
+   "source": "The Marginalian",
+   "category": "literary",
+   "author": "Maria Popova",
+   "why_it_matters": "Tolkien's 1939 argument that fairy tales aren't inherently for children, with adjectives as the root of magic and humans as sub-creators.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 16
+  },
+  {
+   "url": "https://lithub.com/how-to-make-the-ink-used-to-write-hamlet-the-declaration-of-independence-and-beethovens-fifth/",
+   "title": "How to Make the Ink Used to Write Hamlet, the Declaration of Independence, and Beethoven’s Fifth",
+   "source": "Literary Hub",
+   "category": "literary",
+   "author": "Simon Garfield",
+   "why_it_matters": "The chemistry and business history of iron gall and Stephens' blue-black ink, from oak galls and a 1483 recipe to a Keats-linked surgeon's industrial formula.",
+   "wildcard": true,
+   "score": 7,
+   "minutes": 9
+  }
+ ]
+}
