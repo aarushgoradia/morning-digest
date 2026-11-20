@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-20",
+ "method": "Ranked by claude-sonnet-5-5, which read 11 of 14 shortlisted pieces",
+ "n_candidates": 108,
+ "picks": [
+  {
+   "url": "https://aeon.co/essays/do-you-have-a-selkie-or-a-seal-in-the-family",
+   "title": "My grandmother was a seal",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "Jordan Lee Borgman",
+   "why_it_matters": "Irish families claimed selkie ancestry, and the essay reads that inheritance of theft and grief as a harder, more honest model of kinship with nature.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 18
+  },
+  {
+   "url": "https://research.google/blog/a-game-you-cannot-win-unless-you-have-a-quantum-computer/",
+   "title": "A game you cannot win unless you have a quantum computer",
+   "source": "Google Research",
+   "category": "ai-ml",
+   "author": "",
+   "why_it_matters": "A 3×3 parity puzzle with no classical solution becomes a quantum game won 98.3% of the time, showing contextuality as a resource and a hardware benchmark.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 11
+  },
+  {
+   "url": "https://www.astralcodexten.com/p/the-ai-forecasting-agenda",
+   "title": "The AI Forecasting Agenda",
+   "source": "Astral Codex Ten",
+   "category": "essays",
+   "author": "Scott Alexander",
+   "why_it_matters": "Maps where AI forecasting still fails: conditional and causal questions, plus AI progress itself. Freeciv replays are proposed as a way to test causal forecasts.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 15
+  },
+  {
+   "url": "https://lithub.com/the-fall-of-chinas-last-emperor/",
+   "title": "The Fall of China’s Last Emperor",
+   "source": "Literary Hub",
+   "category": "literary",
+   "author": "Paul French",
+   "why_it_matters": "Narrative history of Puyi and Wanrong's last years in the Forbidden City, drawing on unpublished letters that undercut the tutor Johnston's own memoir.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 15
+  },
+  {
+   "url": "https://daily.jstor.org/the-college-kids-who-drove-a-duck-across-the-americas/",
+   "title": "The College Kids Who Drove a Duck Across the Americas",
+   "source": "JSTOR Daily",
+   "category": "history",
+   "author": "April White",
+   "why_it_matters": "Nine college students drove a WWII amphibious truck across the Americas in 1961. Their letters show how a Cold War goodwill stunt actually went.",
+   "wildcard": true,
+   "score": 6,
+   "minutes": 7
+  }
+ ]
+}
