@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-22",
+ "method": "Ranked by claude-sonnet-5-5, which read 12 of 14 shortlisted pieces",
+ "n_candidates": 62,
+ "picks": [
+  {
+   "url": "https://johncarlosbaez.wordpress.com/2026/11/22/masullo-on-the-riemann-hypothesis/",
+   "title": "Masullo on the Riemann Hypothesis",
+   "source": "Azimuth (John Baez)",
+   "category": "math-physics",
+   "author": "John Baez",
+   "why_it_matters": "Explains the trace-formula strategy behind Masullo's claimed GRH proof: zeros as poles, a spectral vs geometric side, Connes-style operators, plus where the argument is shaky.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 14
+  },
+  {
+   "url": "https://www.theintrinsicperspective.com/p/on-the-day-the-riemann-hypothesis",
+   "title": "On the day the Riemann hypothesis fell to AI, I took my son for a walk",
+   "source": "The Intrinsic Perspective (Erik Hoel)",
+   "category": "essays",
+   "author": "Erik Hoel",
+   "why_it_matters": "A short, precise essay that sets an ordinary afternoon with a five-year-old against the day AI took the Riemann hypothesis, with the stakes left unstated.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 2
+  },
+  {
+   "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
+   "title": "87% of the Anthropic power will come from gas and 11% from coal in 2028",
+   "source": "Hacker News (best)",
+   "category": "wildcard",
+   "author": "happosai",
+   "why_it_matters": "Traces the energy supply behind AI compute, site by site, with a clear methodology (marginal grid generators, PUE, utilization) that turns gigawatts into emissions.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 8
+  },
+  {
+   "url": "https://www.jeremykun.com/shortform/2026-11-21-1938/",
+   "title": "After 20 years I finally learned what 'double buffering' is",
+   "source": "Jeremy Kun",
+   "category": "math-physics",
+   "author": "",
+   "why_it_matters": "Double buffering and screen tearing are both race conditions on a shared buffer, a connection that clicks once you see it through CUDA.",
+   "wildcard": false,
+   "score": 6,
+   "minutes": 1
+  },
+  {
+   "url": "https://daily.jstor.org/how-magic-lantern-ghosts-helped-measure-the-stars/",
+   "title": "How Magic Lantern Ghosts Helped Measure the Stars",
+   "source": "JSTOR Daily",
+   "category": "history",
+   "author": "Danny Robb",
+   "why_it_matters": "Zöllner's photometer used magic-lantern ghost tricks to make artificial stars, and it taught astronomers to calibrate their own judgment rather than remove it.",
+   "wildcard": true,
+   "score": 6,
+   "minutes": 3
+  }
+ ]
+}
