@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-23",
+ "method": "Ranked by claude-sonnet-5-5, which read 12 of 14 shortlisted pieces",
+ "n_candidates": 74,
+ "picks": [
+  {
+   "url": "https://lemire.me/blog/2026/11/23/seeing-the-machine-code-of-your-java-program/",
+   "title": "Seeing the machine code of your Java program, with a few lines of Java",
+   "source": "Daniel Lemire",
+   "category": "systems",
+   "author": "Daniel Lemire",
+   "why_it_matters": "Shows how to profile JIT output per instruction; a bitCount loop on ARM stalls on a false dependency through one vector register, fixed 7x by JDK 27 vectorization.",
+   "wildcard": false,
+   "score": 9,
+   "minutes": 8
+  },
+  {
+   "url": "https://eugeneyan.com/writing/public-evals",
+   "title": "How Public Evals Work, Where They Break, and What Should Change",
+   "source": "Eugene Yan",
+   "category": "ai-ml",
+   "author": "",
+   "why_it_matters": "Audits twelve public evals: graders fail correct work, all-pass scoring is brittle, and pass^k reliability reveals what average pass rate hides.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 36
+  },
+  {
+   "url": "https://electricliterature.com/mars-by-peter-stamm/",
+   "title": "Our Son Is Practicing in the Basement for His Interplanetary Voyage",
+   "source": "Electric Literature",
+   "category": "fiction",
+   "author": "Peter Stamm",
+   "why_it_matters": "Peter Stamm's story of a son rehearsing a Mars voyage in the basement, with message delays counted in minutes, is a quiet study of distance and parental love.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 25
+  },
+  {
+   "url": "https://www.newyorker.com/magazine/2026/11/30/is-norways-oil-fund-a-blessing-or-a-curse",
+   "title": "Is Norway’s Oil Fund a Blessing or a Curse?",
+   "source": "The New Yorker (magazine)",
+   "category": "literary",
+   "author": "D. T. Max",
+   "why_it_matters": "The $2.3 trillion oil fund as a cultural problem: how a thrifty, egalitarian nation manages a windfall and a brash, finance-bro manager, with economic and strategic stakes.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 22
+  },
+  {
+   "url": "https://aeon.co/essays/what-can-we-learn-from-the-past-experience-of-el-nino",
+   "title": "A colossal oscillation",
+   "source": "Aeon",
+   "category": "essays",
+   "author": "Dagomar Degroot",
+   "why_it_matters": "An environmental historian uses archives of society and nature to argue El Niño is hard to define and forecast, and that its human effects are partly made by people.",
+   "wildcard": true,
+   "score": 7,
+   "minutes": 19
+  }
+ ]
+}

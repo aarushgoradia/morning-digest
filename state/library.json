@@ -1,4 +1,22 @@
 {
+ "https://daily.jstor.org/the-college-kids-who-drove-a-duck-across-the-americas/": {
+  "added": "2026-11-20",
+  "category": "history",
+  "list": "later",
+  "source": "JSTOR Daily",
+  "title": "The College Kids Who Drove a Duck Across the Americas",
+  "url": "https://daily.jstor.org/the-college-kids-who-drove-a-duck-across-the-americas/",
+  "why_it_matters": "Nine college students drove a WWII amphibious truck across the Americas in 1961. Their letters show how a Cold War goodwill stunt actually went."
+ },
+ "https://lithub.com/the-fall-of-chinas-last-emperor/": {
+  "added": "2026-11-20",
+  "category": "literary",
+  "list": "later",
+  "source": "Literary Hub",
+  "title": "The Fall of China\u2019s Last Emperor",
+  "url": "https://lithub.com/the-fall-of-chinas-last-emperor/",
+  "why_it_matters": "Narrative history of Puyi and Wanrong's last years in the Forbidden City, drawing on unpublished letters that undercut the tutor Johnston's own memoir."
+ },
  "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings": {
   "added": "2026-11-15",
   "category": "ai-ml",
@@ -7,5 +25,14 @@
   "title": "Understanding Positional Embeddings in Modern LLMs",
   "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
   "why_it_matters": "Walks from GPT-2's learned absolute embeddings through RoPE to NoPE, with code, and shows what 2026 open-weight models actually use for position."
+ },
+ "https://www.astralcodexten.com/p/the-ai-forecasting-agenda": {
+  "added": "2026-11-20",
+  "category": "essays",
+  "list": "later",
+  "source": "Astral Codex Ten",
+  "title": "The AI Forecasting Agenda",
+  "url": "https://www.astralcodexten.com/p/the-ai-forecasting-agenda",
+  "why_it_matters": "Maps where AI forecasting still fails: conditional and causal questions, plus AI progress itself. Freeciv replays are proposed as a way to test causal forecasts."
  }
 }
