@@ -1,0 +1,62 @@
+{
+ "date": "2026-11-28",
+ "method": "Ranked by claude-sonnet-5-5, which read 11 of 14 shortlisted pieces",
+ "n_candidates": 64,
+ "picks": [
+  {
+   "url": "https://newsletter.semianalysis.com/p/trainium3-inferencex",
+   "title": "AWS Challenger: Trainium3 Inference and Microarchitecture Deep Dive",
+   "source": "SemiAnalysis",
+   "category": "hardware",
+   "author": "Kimbo Chen",
+   "why_it_matters": "Cycle-level microbenchmarks of Trainium3 explain why tile-first hardware, DMA descriptor engines and the HBM/cost tradeoff can beat GB300 on inference TCO.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 25
+  },
+  {
+   "url": "https://www.beren.io/2026-11-27-Democracy-With-Cheaply-Creatable-Minds/",
+   "title": "Democracy with Cheaply Creatable Minds",
+   "source": "Beren Millidge",
+   "category": "ai-ml",
+   "author": "Beren Millidge",
+   "why_it_matters": "Cheap copyable minds break the one-person-one-vote assumption; proposes incentive-compatible 'franchise bonds' that make creating voters politically neutral for the creator.",
+   "wildcard": false,
+   "score": 8,
+   "minutes": 40
+  },
+  {
+   "url": "https://engelsbergideas.com/notebook/spains-spectres-of-civil-strife/",
+   "title": "Spain’s spectres of civil strife",
+   "source": "Engelsberg Ideas",
+   "category": "essays",
+   "author": "Jason Webster",
+   "why_it_matters": "Argues Spain's history is a recurring suppression of its own 'other' that keeps resurfacing, from Priscillian's tomb to Santiago Matamoros to the Franco exhumations.",
+   "wildcard": false,
+   "score": 7,
+   "minutes": 8
+  },
+  {
+   "url": "https://thepalindrome.org/p/codex-told-me-a-secret",
+   "title": "Codex Told Me a Secret",
+   "source": "The Palindrome (Tivadar Danka)",
+   "category": "math-physics",
+   "author": "Tivadar Danka",
+   "why_it_matters": "A working mathematician gets a likely-novel theorem from a coding agent and asks what authorship and verification duties he owes to a result he only prompted.",
+   "wildcard": false,
+   "score": 6,
+   "minutes": 6
+  },
+  {
+   "url": "https://daily.jstor.org/the-cutthroat-business-of-shipwrecks/",
+   "title": "The Cutthroat Business of Shipwrecks",
+   "source": "JSTOR Daily",
+   "category": "history",
+   "author": "Amelia Soth",
+   "why_it_matters": "The medieval 'right of wreck' shaped coastal law, architecture and incentives, and enslaved African divers were the hidden labor behind salvage fortunes.",
+   "wildcard": true,
+   "score": 6,
+   "minutes": 6
+  }
+ ]
+}
